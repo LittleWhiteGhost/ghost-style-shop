@@ -1,4 +1,4 @@
-/* Основные стили */
+/* Ghost Style - Минималистичный черно-белый дизайн */
 * {
     margin: 0;
     padding: 0;
@@ -6,22 +6,27 @@
 }
 
 :root {
-    --primary-color: #1a1a1a;
-    --secondary-color: #333;
-    --accent-color: #8b5cf6;
-    --text-color: #ffffff;
-    --text-secondary: #a0a0a0;
-    --bg-color: #0f0f0f;
-    --card-bg: #1e1e1e;
-    --border-color: #2a2a2a;
-    --success-color: #10b981;
+    --primary: #000000;
+    --secondary: #1a1a1a;
+    --text: #000000;
+    --text-muted: #666666;
+    --text-light: #999999;
+    --bg: #ffffff;
+    --bg-secondary: #f5f5f5;
+    --card-bg: #ffffff;
+    --border: #e5e5e5;
+    --border-light: #f0f0f0;
+    --accent: #000000;
+    --hover: #f8f8f8;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .app {
@@ -29,98 +34,158 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 /* Header */
 .header {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    padding: 20px;
-    text-align: center;
-    border-bottom: 2px solid var(--accent-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid var(--border-light);
+    padding: 16px 20px;
 }
 
 .logo {
-    font-size: 24px;
-    font-weight: bold;
-    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    width: 28px;
+    height: 28px;
+    stroke: var(--primary);
+}
+
+.logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--primary);
 }
 
 /* Content */
 .content {
     flex: 1;
-    padding: 20px;
-    padding-bottom: 80px;
+    padding: 24px 16px;
+    padding-bottom: 100px;
 }
 
 .page {
     display: none;
-    animation: fadeIn 0.3s ease-in-out;
+    animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .page.active {
     display: block;
 }
 
-.page h2 {
-    margin-bottom: 20px;
-    font-size: 22px;
-    border-bottom: 2px solid var(--accent-color);
-    padding-bottom: 10px;
+.section-header {
+    margin-bottom: 24px;
+}
+
+.section-header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+    color: var(--primary);
+}
+
+.section-subtitle {
+    font-size: 15px;
+    color: var(--text-muted);
+    font-weight: 400;
 }
 
 /* Product Grid */
 .product-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    gap: 16px;
 }
 
 .product-card {
     background: var(--card-bg);
     border-radius: 12px;
-    padding: 15px;
-    text-align: center;
-    border: 1px solid var(--border-color);
-    transition: transform 0.2s, box-shadow 0.2s;
+    padding: 16px;
+    border: 1px solid var(--border);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
+    cursor: pointer;
 }
 
 .product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
 .product-image {
-    font-size: 50px;
-    margin-bottom: 10px;
+    width: 100%;
+    aspect-ratio: 1;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.product-image svg {
+    width: 100%;
+    height: 100%;
+    stroke: var(--primary);
 }
 
 .product-card h3 {
     font-size: 14px;
+    font-weight: 500;
     margin-bottom: 8px;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .price {
-    color: var(--accent-color);
-    font-weight: bold;
+    color: var(--primary);
+    font-weight: 600;
     font-size: 16px;
+    letter-spacing: 0.5px;
 }
 
-/* New Badge */
-.new-badge {
-    position: relative;
-}
-
+/* Badge */
 .badge {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    background: var(--success-color);
+    top: 12px;
+    right: 12px;
+    background: var(--primary);
     color: white;
-    padding: 4px 8px;
-    border-radius: 12px;
+    padding: 4px 10px;
+    border-radius: 16px;
     font-size: 10px;
-    font-weight: bold;
+    font-weight: 700;
+    letter-spacing: 1px;
+    z-index: 10;
+}
+
+.new-tag {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
 }
 
 /* Account */
@@ -129,34 +194,79 @@ body {
 }
 
 .user-avatar {
-    font-size: 80px;
-    margin-bottom: 15px;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: var(--bg-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--border);
+}
+
+.user-avatar svg {
+    width: 60px;
+    height: 60px;
+    stroke: var(--primary);
+}
+
+.account-info h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 32px;
+    color: var(--primary);
 }
 
 .account-menu {
-    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .account-item {
     background: var(--card-bg);
-    padding: 15px 20px;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    border: 1px solid var(--border-color);
+    padding: 16px 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .account-item:hover {
-    background: var(--secondary-color);
-    border-color: var(--accent-color);
+    background: var(--hover);
+    border-color: var(--primary);
+}
+
+.item-icon {
+    width: 22px;
+    height: 22px;
+    stroke: var(--primary);
+    flex-shrink: 0;
+}
+
+.account-item span {
+    flex: 1;
+    font-size: 15px;
+    font-weight: 500;
+    text-align: left;
+}
+
+.arrow-icon {
+    width: 20px;
+    height: 20px;
+    stroke: var(--text-light);
+    flex-shrink: 0;
 }
 
 /* Settings */
 .settings-list {
     background: var(--card-bg);
-    border-radius: 12px;
-    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    border: 1px solid var(--border);
     overflow: hidden;
 }
 
@@ -164,20 +274,48 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
-    border-bottom: 1px solid var(--border-color);
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--border-light);
+    transition: background 0.2s ease;
 }
 
 .setting-item:last-child {
     border-bottom: none;
 }
 
+.setting-item.clickable {
+    cursor: pointer;
+}
+
+.setting-item.clickable:hover {
+    background: var(--hover);
+}
+
+.setting-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.setting-icon {
+    width: 22px;
+    height: 22px;
+    stroke: var(--primary);
+    flex-shrink: 0;
+}
+
+.setting-item span {
+    font-size: 15px;
+    font-weight: 500;
+}
+
 /* Toggle Switch */
 .switch {
     position: relative;
     display: inline-block;
-    width: 50px;
-    height: 26px;
+    width: 48px;
+    height: 28px;
+    flex-shrink: 0;
 }
 
 .switch input {
@@ -194,88 +332,114 @@ body {
     right: 0;
     bottom: 0;
     background-color: #ccc;
-    transition: 0.4s;
-    border-radius: 26px;
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 28px;
 }
 
 .slider:before {
     position: absolute;
     content: "";
-    height: 20px;
-    width: 20px;
+    height: 22px;
+    width: 22px;
     left: 3px;
     bottom: 3px;
     background-color: white;
-    transition: 0.4s;
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 input:checked + .slider {
-    background-color: var(--accent-color);
+    background-color: var(--primary);
 }
 
 input:checked + .slider:before {
-    transform: translateX(24px);
+    transform: translateX(20px);
 }
 
 /* Language Select */
 .language-select {
-    background: var(--primary-color);
-    color: var(--text-color);
-    border: 1px solid var(--border-color);
-    padding: 8px 12px;
-    border-radius: 6px;
+    background: var(--bg-secondary);
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 8px 16px;
+    border-radius: 8px;
     cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    outline: none;
+    transition: border-color 0.2s ease;
 }
 
-/* Bottom Navigation */
+.language-select:focus {
+    border-color: var(--primary);
+}
+
+/* Bottom Navigation с Glass эффектом */
 .bottom-nav {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    background: var(--primary-color);
-    border-top: 1px solid var(--border-color);
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
     display: flex;
     justify-content: space-around;
-    padding: 10px 0;
-    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
+    padding: 8px 0;
+    padding-bottom: max(8px, env(safe-area-inset-bottom));
+    z-index: 1000;
 }
 
 .nav-btn {
     background: none;
     border: none;
-    color: var(--text-secondary);
+    color: var(--text-light);
     display: flex;
     flex-direction: column;
     align-items: center;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     flex: 1;
+    padding: 6px 0;
+    gap: 4px;
 }
 
-.nav-btn .icon {
-    font-size: 22px;
-    margin-bottom: 4px;
+.nav-icon {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+    transition: all 0.25s ease;
 }
 
-.nav-btn span:last-child {
+.nav-btn span {
     font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
 }
 
 .nav-btn.active {
-    color: var(--accent-color);
+    color: var(--primary);
+}
+
+.nav-btn.active .nav-icon {
+    transform: scale(1.1);
 }
 
 .nav-btn:hover {
-    color: var(--text-color);
+    color: var(--text);
+}
+
+.nav-btn:active {
+    transform: scale(0.95);
 }
 
 /* Animations */
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(12px);
     }
     to {
         opacity: 1;
@@ -289,7 +453,17 @@ input:checked + .slider:before {
         grid-template-columns: 1fr;
     }
     
-    .nav-btn span:last-child {
+    .section-header h2 {
+        font-size: 24px;
+    }
+    
+    .nav-btn span {
         font-size: 10px;
+    }
+}
+
+@media (min-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
