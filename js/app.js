@@ -1,6 +1,6 @@
 // Ждем загрузки DOM
 document.addEventListener('DOMContentLoaded', () => {
-    
+
     // Безопасная инициализация Telegram Web App
     let tg = null;
     try {
@@ -12,6 +12,22 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (e) {
         console.log('Telegram Web App not available:', e);
     }
+
+    // Анимация хедера при скролле
+    const header = document.querySelector('.header');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        if (currentScroll > 50) {
+            header?.classList.add('scrolled');
+        } else {
+            header?.classList.remove('scrolled');
+        }
+        
+        lastScroll = currentScroll;
+    });
 
     // Навигация
     const navButtons = document.querySelectorAll('.nav-btn');
@@ -74,6 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.documentElement.style.setProperty('--border-light', '#1a1a1a');
                 document.documentElement.style.setProperty('--primary', '#ffffff');
                 document.documentElement.style.setProperty('--hover', '#1a1a1a');
+                document.documentElement.style.setProperty('--glass-bg', 'rgba(0, 0, 0, 0.72)');
             } else {
                 document.documentElement.style.setProperty('--bg', '#ffffff');
                 document.documentElement.style.setProperty('--bg-secondary', '#f5f5f5');
@@ -85,6 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.documentElement.style.setProperty('--border-light', '#f0f0f0');
                 document.documentElement.style.setProperty('--primary', '#000000');
                 document.documentElement.style.setProperty('--hover', '#f8f8f8');
+                document.documentElement.style.setProperty('--glass-bg', 'rgba(255, 255, 255, 0.72)');
             }
 
             if (tg && tg.HapticFeedback) {
@@ -121,6 +139,31 @@ document.addEventListener('DOMContentLoaded', () => {
         tg.MainButton.setText('ДОБАВИТЬ В КОРЗИНУ');
         tg.MainButton.hide();
     }
+
+    // Анимация появления карточек
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }, index * 100);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.product-card').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        observer.observe(card);
+    });
 
     console.log('Ghost Style Web App initialized');
 });
