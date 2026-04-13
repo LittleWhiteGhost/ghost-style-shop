@@ -176,18 +176,6 @@ body {
     z-index: 10;
 }
 
-.new-tag {
-    display: inline-block;
-    background: var(--primary);
-    color: white;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    margin-bottom: 20px;
-}
-
 /* Account */
 .account-info {
     text-align: center;
@@ -214,8 +202,15 @@ body {
 .account-info h3 {
     font-size: 22px;
     font-weight: 600;
-    margin-bottom: 32px;
+    margin-bottom: 8px;
     color: var(--primary);
+}
+
+/* Account Page */
+.user-email {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 32px;
 }
 
 .account-menu {
@@ -233,7 +228,9 @@ body {
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
+    text-decoration: none;
+    color: inherit;
 }
 
 .account-item:hover {
@@ -248,11 +245,22 @@ body {
     flex-shrink: 0;
 }
 
-.account-item span {
+.item-content {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.item-title {
     font-size: 15px;
     font-weight: 500;
     text-align: left;
+}
+
+.item-subtitle {
+    font-size: 13px;
+    color: var(--text-muted);
 }
 
 .arrow-icon {
@@ -262,7 +270,21 @@ body {
     flex-shrink: 0;
 }
 
-/* Settings */
+/* Settings Page */
+.settings-section {
+    margin-bottom: 24px;
+}
+
+.section-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    padding-left: 8px;
+}
+
 .settings-list {
     background: var(--card-bg);
     border-radius: 16px;
@@ -274,7 +296,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 18px 20px;
+    padding: 16px 20px;
     border-bottom: 1px solid var(--border-light);
     transition: background 0.2s ease;
 }
@@ -295,6 +317,13 @@ body {
     display: flex;
     align-items: center;
     gap: 14px;
+    flex: 1;
+}
+
+.setting-left > div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 }
 
 .setting-icon {
@@ -304,9 +333,14 @@ body {
     flex-shrink: 0;
 }
 
-.setting-item span {
+.setting-left .setting-title {
     font-size: 15px;
     font-weight: 500;
+}
+
+.setting-left .setting-subtitle {
+    font-size: 13px;
+    color: var(--text-muted);
 }
 
 /* Toggle Switch */
@@ -369,10 +403,28 @@ input:checked + .slider:before {
     font-weight: 500;
     outline: none;
     transition: border-color 0.2s ease;
+    appearance: none;
+    padding-right: 32px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
 }
 
 .language-select:focus {
     border-color: var(--primary);
+}
+
+/* New Tag */
+.new-tag {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-top: 12px;
 }
 
 /* Bottom Navigation с Glass эффектом */

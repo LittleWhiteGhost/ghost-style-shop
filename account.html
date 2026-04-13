@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghost Style - Аккаунт</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <div class="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 10h.01M15 10h.01M12 2a8 8 0 0 1 8 8v12l-3-3-2.5 2.5L12 19l-2.5 2.5L7 19l-3 3V10a8 8 0 0 1 8-8z"/>
+                </svg>
+                <span class="logo-text">GHOST STYLE</span>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <main class="content">
+            <div class="section-header">
+                <h2>Аккаунт</h2>
+                <p class="section-subtitle">Управление профилем</p>
+            </div>
+            
+            <div class="account-info">
+                <div class="user-avatar">
+                    <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="50" cy="35" r="18"/>
+                        <path d="M20 85c0-18 13-30 30-30s30 12 30 30"/>
+                    </svg>
+                </div>
+                <h3 id="username">Гость</h3>
+                <p class="user-email">Управляйте своим профилем</p>
+                
+                <div class="account-menu">
+                    <a href="#" class="account-item">
+                        <svg class="item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 16v-1a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v1M20 10V8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v2M4 18l2-8h12l2 8H4z"/>
+                        </svg>
+                        <div class="item-content">
+                            <span class="item-title">Мои заказы</span>
+                            <span class="item-subtitle">3 активных заказа</span>
+                        </div>
+                        <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 18l6-6-6-6"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="account-item">
+                        <svg class="item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                        <div class="item-content">
+                            <span class="item-title">Избранное</span>
+                            <span class="item-subtitle">12 товаров</span>
+                        </div>
+                        <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 18l6-6-6-6"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="account-item">
+                        <svg class="item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                        </svg>
+                        <div class="item-content">
+                            <span class="item-title">Адреса доставки</span>
+                            <span class="item-subtitle">2 сохраненных адреса</span>
+                        </div>
+                        <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 18l6-6-6-6"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="account-item">
+                        <svg class="item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="1" y="4" width="22" height="16" rx="2"/>
+                            <path d="M1 10h22"/>
+                        </svg>
+                        <div class="item-content">
+                            <span class="item-title">Способы оплаты</span>
+                            <span class="item-subtitle">Visa **** 4276</span>
+                        </div>
+                        <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 18l6-6-6-6"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="account-item">
+                        <svg class="item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                        <div class="item-content">
+                            <span class="item-title">Редактировать профиль</span>
+                            <span class="item-subtitle">Изменить имя и фото</span>
+                        </div>
+                        <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 18l6-6-6-6"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-btn">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    <path d="M9 22V12h6v10"/>
+                </svg>
+                <span>Каталог</span>
+            </a>
+            <a href="new.html" class="nav-btn">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+                <span>Новинки</span>
+            </a>
+            <a href="account.html" class="nav-btn active">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                </svg>
+                <span>Аккаунт</span>
+            </a>
+            <a href="settings.html" class="nav-btn">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                </svg>
+                <span>Настройки</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
