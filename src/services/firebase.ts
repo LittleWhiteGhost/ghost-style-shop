@@ -1,10 +1,10 @@
 // Firebase конфигурация
-// ЗАМЕНИТЕ эти значения на ваши из Firebase Console
 export const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyAkDtsa7nFUr38sESU_voQKbNuFAwvtVX0",
+  authDomain: "web-sait-5fcaa.firebaseapp.com",
+  projectId: "web-sait-5fcaa",
+  storageBucket: "web-sait-5fcaa.firebasestorage.app",
+  messagingSenderId: "684290890249",
+  appId: "1:684290890249:web:21a785813500fea0d2b6d8",
+  measurementId: "G-NJDGW4PBF1"
 };
