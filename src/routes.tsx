@@ -1,0 +1,39 @@
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { useAuth } from './context/AuthContext';
+import Layout from './components/Layout';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Catalog from './pages/Catalog';
+import NewArrivals from './pages/NewArrivals';
+import Account from './pages/Account';
+import Settings from './pages/Settings';
+import Cart from './pages/Cart';
+import Loading from './components/Loading';
+
+function PrivateRoute({ children }: { children: React.ReactNode }) {
+  const { user, loading } = useAuth();
+  
+  if (loading) return <Loading />;
+  return user ? <>{children}</> : <Navigate to="/login" />;
+}
+
+export default function AppRoutes() {
+  return (
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Catalog />} />
+        <Route path="new" element={<NewArrivals />} />
+        <Route path="account" element={
+          <PrivateRoute>
+            <Account />
+          </PrivateRoute>
+        } />
+        <Route path="settings" element={<Settings />} />
+        <Route path="cart" element={<Cart />} />
+      </Route>
+      <Route path="*" element={<Navigate to="/" />} />
+    </Routes>
+  );
+}
