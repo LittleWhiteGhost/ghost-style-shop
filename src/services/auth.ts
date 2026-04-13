@@ -1,15 +1,5 @@
-import { initializeApp } from 'firebase/app';
-import { getAuth, GoogleAuthProvider } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
-import { firebaseConfig } from './firebase';
-
-// Инициализация Firebase
-const app = initializeApp(firebaseConfig);
-
-// Экспорт сервисов
-export const auth = getAuth(app);
-export const db = getFirestore(app);
-export const googleProvider = new GoogleAuthProvider();
+import { User } from 'firebase/auth';
+import { auth, db, googleProvider } from './firebase';
 
 // Сервис авторизации
 export const AuthService = {

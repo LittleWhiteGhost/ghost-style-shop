@@ -1,8 +1,12 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { useWishlist } from '../context/WishlistContext';
+import { useAuth } from '../context/AuthContext';
 
 export default function Header() {
   const { itemCount } = useCart();
+  const { items } = useWishlist();
+  const { user } = useAuth();
   const location = useLocation();
 
   const isActive = (path: string) => location.pathname === path;
@@ -16,12 +20,20 @@ export default function Header() {
           </svg>
           <span className="logo-text">GHOST STYLE</span>
         </Link>
-        <Link to="/cart" className="cart-button">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M16 16v-1a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v1M20 10V8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v2M4 18l2-8h12l2 8H4z"/>
-          </svg>
-          {itemCount > 0 && <span className="cart-badge">{itemCount}</span>}
-        </Link>
+        <div className="header-actions">
+          <Link to="/wishlist" className="header-action-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+            {items.length > 0 && <span className="action-badge">{items.length}</span>}
+          </Link>
+          <Link to="/cart" className="header-action-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M16 16v-1a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v1M20 10V8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v2M4 18l2-8h12l2 8H4z"/>
+            </svg>
+            {itemCount > 0 && <span className="action-badge">{itemCount}</span>}
+          </Link>
+        </div>
       </div>
 
       <nav className="bottom-nav">

@@ -1,4 +1,8 @@
 // Firebase конфигурация
+import { initializeApp } from 'firebase/app';
+import { getAuth, GoogleAuthProvider } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
+
 export const firebaseConfig = {
   apiKey: "AIzaSyAkDtsa7nFUr38sESU_voQKbNuFAwvtVX0",
   authDomain: "web-sait-5fcaa.firebaseapp.com",
@@ -8,3 +12,11 @@ export const firebaseConfig = {
   appId: "1:684290890249:web:21a785813500fea0d2b6d8",
   measurementId: "G-NJDGW4PBF1"
 };
+
+// Инициализация Firebase
+const app = initializeApp(firebaseConfig);
+
+// Экспорт сервисов
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+export const googleProvider = new GoogleAuthProvider();

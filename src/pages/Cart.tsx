@@ -1,7 +1,9 @@
 import { useCart } from '../context/CartContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function Cart() {
   const { items, removeFromCart, updateQuantity, total, clearCart } = useCart();
+  const navigate = useNavigate();
 
   if (items.length === 0) {
     return (
@@ -58,7 +60,7 @@ export default function Cart() {
           <span>Итого:</span>
           <span className="total-price">{total.toLocaleString('ru-RU')} ₽</span>
         </div>
-        <button className="btn-checkout">Оформить заказ</button>
+        <button className="btn-checkout" onClick={() => navigate('/checkout')}>Оформить заказ</button>
         <button className="btn-clear" onClick={clearCart}>Очистить корзину</button>
       </div>
     </div>

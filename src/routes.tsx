@@ -8,6 +8,11 @@ import NewArrivals from './pages/NewArrivals';
 import Account from './pages/Account';
 import Settings from './pages/Settings';
 import Cart from './pages/Cart';
+import Checkout from './pages/Checkout';
+import OrderSuccess from './pages/OrderSuccess';
+import Wishlist from './pages/Wishlist';
+import ProductDetail from './pages/ProductDetail';
+import Admin from './pages/Admin';
 import Loading from './components/Loading';
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
@@ -25,6 +30,8 @@ export default function AppRoutes() {
       <Route path="/" element={<Layout />}>
         <Route index element={<Catalog />} />
         <Route path="new" element={<NewArrivals />} />
+        <Route path="wishlist" element={<Wishlist />} />
+        <Route path="product/:id" element={<ProductDetail />} />
         <Route path="account" element={
           <PrivateRoute>
             <Account />
@@ -32,6 +39,17 @@ export default function AppRoutes() {
         } />
         <Route path="settings" element={<Settings />} />
         <Route path="cart" element={<Cart />} />
+        <Route path="checkout" element={
+          <PrivateRoute>
+            <Checkout />
+          </PrivateRoute>
+        } />
+        <Route path="order-success" element={<OrderSuccess />} />
+        <Route path="admin" element={
+          <PrivateRoute>
+            <Admin />
+          </PrivateRoute>
+        } />
       </Route>
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
