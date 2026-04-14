@@ -10,16 +10,14 @@ export default function Settings() {
   const [emailNewsletter, setEmailNewsletter] = useState(false);
   const [language, setLanguage] = useState('ru');
 
-  // Применяем тему при загрузке
+  // Синхронизируем тему при изменении darkMode
   useEffect(() => {
     document.body.classList.toggle('dark-mode', darkMode);
-  }, []);
+    localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+  }, [darkMode]);
 
   const toggleDarkMode = () => {
-    const newMode = !darkMode;
-    setDarkMode(newMode);
-    document.body.classList.toggle('dark-mode', newMode);
-    localStorage.setItem('theme', newMode ? 'dark' : 'light');
+    setDarkMode(prev => !prev);
   };
 
   return (

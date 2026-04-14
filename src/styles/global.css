@@ -45,12 +45,12 @@
   --gradient-subtle: linear-gradient(135deg, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0) 100%);
   --gradient-card: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(0,0,0,0.01) 100%);
 
-  /* Эффекты */
+  /* Эффекты — приглушённые для ч/б темы */
   --hover: #f8f8f8;
   --active: #f0f0f0;
-  --error: #dc2626;
+  --error: #b91c1c;
   --error-bg: #fef2f2;
-  --success: #16a34a;
+  --success: #15803d;
   --success-bg: #f0fdf4;
 
   /* Переходы */
@@ -770,7 +770,7 @@ body.dark-mode .wishlist-btn {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: var(--border);
   transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 28px;
 }
@@ -782,10 +782,10 @@ body.dark-mode .wishlist-btn {
   width: 22px;
   left: 3px;
   bottom: 3px;
-  background-color: white;
+  background-color: var(--bg);
   transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
 input:checked + .slider {
@@ -794,6 +794,10 @@ input:checked + .slider {
 
 input:checked + .slider:before {
   transform: translateX(20px);
+}
+
+body.dark-mode .slider:before {
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
 }
 
 /* Language Select */
@@ -807,11 +811,15 @@ input:checked + .slider:before {
   font-size: 14px;
   font-weight: 500;
   outline: none;
-  transition: border-color 0.2s ease;
+  transition: border-color var(--transition-fast);
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23737373' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 12px center;
+}
+
+body.dark-mode .language-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23a3a3a3' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
 }
 
 .language-select:focus {
