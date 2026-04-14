@@ -13,12 +13,10 @@ import OrderSuccess from './pages/OrderSuccess';
 import Wishlist from './pages/Wishlist';
 import ProductDetail from './pages/ProductDetail';
 import Admin from './pages/Admin';
-import Loading from './components/Loading';
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
-  const { user, loading } = useAuth();
-  
-  if (loading) return <Loading />;
+  const { user } = useAuth();
+
   return user ? <>{children}</> : <Navigate to="/login" />;
 }
 

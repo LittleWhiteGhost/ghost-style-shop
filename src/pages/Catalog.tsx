@@ -14,21 +14,17 @@ const mockProducts: Product[] = [
 
 export default function Catalog() {
   const [products, setProducts] = useState<Product[]>(mockProducts);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     // Попытка загрузить из Firebase, если не получится - используем моковые данные
     const loadProducts = async () => {
       try {
-        setLoading(true);
         const firebaseProducts = await ProductService.getAllProducts();
         if (firebaseProducts.length > 0) {
           setProducts(firebaseProducts);
         }
       } catch (error) {
         console.log('Using mock data');
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -41,23 +37,19 @@ export default function Catalog() {
         <h2>Каталог</h2>
         <p className="section-subtitle">Стильная одежда на каждый день</p>
       </div>
-      
-      {loading ? (
-        <div className="loading">Загрузка...</div>
-      ) : (
-        <div className="product-grid">
-          {products.map(product => (
-            <ProductCard
-              key={product.id}
-              id={product.id!}
-              name={product.name}
-              price={product.price}
-              image={product.image}
-              isNew={product.isNew}
-            />
-          ))}
-        </div>
-      )}
+
+      <div className="product-grid">
+        {products.map(product => (
+          <ProductCard
+            key={product.id}
+            id={product.id!}
+            name={product.name}
+            price={product.price}
+            image={product.image}
+            isNew={product.isNew}
+          />
+        ))}
+      </div>
     </div>
   );
 }

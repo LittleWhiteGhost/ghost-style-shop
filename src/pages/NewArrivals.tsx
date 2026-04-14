@@ -13,20 +13,16 @@ const mockNewProducts: Product[] = [
 
 export default function NewArrivals() {
   const [products, setProducts] = useState<Product[]>(mockNewProducts);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const loadProducts = async () => {
       try {
-        setLoading(true);
         const firebaseProducts = await ProductService.getNewProducts();
         if (firebaseProducts.length > 0) {
           setProducts(firebaseProducts);
         }
       } catch (error) {
         console.log('Using mock data');
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -40,23 +36,19 @@ export default function NewArrivals() {
         <p className="section-subtitle">Новые поступления этой недели</p>
         <div className="new-tag">NEW SEASON</div>
       </div>
-      
-      {loading ? (
-        <div className="loading">Загрузка...</div>
-      ) : (
-        <div className="product-grid">
-          {products.map(product => (
-            <ProductCard
-              key={product.id}
-              id={product.id!}
-              name={product.name}
-              price={product.price}
-              image={product.image}
-              isNew={true}
-            />
-          ))}
-        </div>
-      )}
+
+      <div className="product-grid">
+        {products.map(product => (
+          <ProductCard
+            key={product.id}
+            id={product.id!}
+            name={product.name}
+            price={product.price}
+            image={product.image}
+            isNew={true}
+          />
+        ))}
+      </div>
     </div>
   );
 }

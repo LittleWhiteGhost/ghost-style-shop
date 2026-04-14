@@ -10,7 +10,6 @@ export default function Admin() {
   const [activeTab, setActiveTab] = useState<'products' | 'orders'>('products');
   const [products, setProducts] = useState<Product[]>([]);
   const [orders, setOrders] = useState<Order[]>([]);
-  const [loading, setLoading] = useState(false);
   const [newProduct, setNewProduct] = useState<Partial<Product>>({
     name: '',
     price: 0,
@@ -32,7 +31,6 @@ export default function Admin() {
   }, [activeTab]);
 
   const loadData = async () => {
-    setLoading(true);
     try {
       if (activeTab === 'products') {
         const prods = await ProductService.getAllProducts();
@@ -44,8 +42,6 @@ export default function Admin() {
       }
     } catch (error) {
       console.error('Load error:', error);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -151,24 +147,20 @@ export default function Admin() {
             <button type="submit" className="btn-primary">Добавить</button>
           </form>
 
-          {loading ? (
-            <div className="loading">Загрузка...</div>
-          ) : (
-            <div className="products-list">
-              {products.map(p => (
-                <div key={p.id} className="admin-product-item">
-                  <img src={p.image} alt={p.name} className="product-thumb" />
-                  <div className="product-info">
-                    <h4>{p.name}</h4>
-                    <p>{p.price.toLocaleString('ru-RU')} ₽</p>
-                  </div>
-                  <button className="btn-delete" onClick={() => handleDeleteProduct(p.id!)}>
-                    Удалить
-                  </button>
+          <div className="products-list">
+            {products.map(p => (
+              <div key={p.id} className="admin-product-item">
+                <img src={p.image} alt={p.name} className="product-thumb" />
+                <div className="product-info">
+                  <h4>{p.name}</h4>
+                  <p>{p.price.toLocaleString('ru-RU')} ₽</p>
                 </div>
-              ))}
-            </div>
-          )}
+                <button className="btn-delete" onClick={() => handleDeleteProduct(p.id!)}>
+                  Удалить
+                </button>
+              </div>
+            ))}
+          </div>
         </div>
       )}
 
