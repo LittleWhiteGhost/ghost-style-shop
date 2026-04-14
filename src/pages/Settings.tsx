@@ -1,14 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Settings() {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+    // Загружаем сохранённую тему из localStorage
+    const saved = localStorage.getItem('theme');
+    return saved === 'dark';
+  });
   const [notifications, setNotifications] = useState(true);
   const [emailNewsletter, setEmailNewsletter] = useState(false);
   const [language, setLanguage] = useState('ru');
 
+  // Применяем тему при загрузке
+  useEffect(() => {
+    document.body.classList.toggle('dark-mode', darkMode);
+  }, []);
+
   const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    document.body.classList.toggle('dark-mode', !darkMode);
+    const newMode = !darkMode;
+    setDarkMode(newMode);
+    document.body.classList.toggle('dark-mode', newMode);
+    localStorage.setItem('theme', newMode ? 'dark' : 'light');
   };
 
   return (
