@@ -1,10 +1,8 @@
 import { useWishlist } from '../context/WishlistContext';
-import { useCart } from '../context/CartContext';
 import ProductCard from '../components/ProductCard';
 
 export default function Wishlist() {
-  const { items, removeFromWishlist } = useWishlist();
-  const { addToCart } = useCart();
+  const { items } = useWishlist();
 
   if (items.length === 0) {
     return (

@@ -1,5 +1,4 @@
-import { User } from 'firebase/auth';
-import { auth, db, googleProvider } from './firebase';
+import { auth, googleProvider } from './firebase';
 
 // Сервис авторизации
 export const AuthService = {
