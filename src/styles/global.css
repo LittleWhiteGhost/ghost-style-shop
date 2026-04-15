@@ -12,6 +12,7 @@
   /* Основная палитра — черно-белая с градациями */
   --primary: #000000;
   --primary-soft: #1a1a1a;
+  --badge-text: #ffffff;
   --secondary: #333333;
   --muted: #666666;
   --text: #0a0a0a;
@@ -67,7 +68,7 @@
 body.dark-mode {
   --primary: #ffffff;
   --primary-soft: #e5e5e5;
-  --secondary: #a3a3a3;
+  --badge-text: #000000;
   --muted: #737373;
   --text: #fafafa;
   --text-muted: #a3a3a3;
@@ -565,7 +566,7 @@ body.dark-mode .wishlist-btn {
 .new-tag {
   display: inline-block;
   background: var(--primary);
-  color: white;
+  color: var(--badge-text);
   padding: 6px 14px;
   border-radius: 20px;
   font-size: 11px;
@@ -920,7 +921,7 @@ body.dark-mode .language-select {
   width: 100%;
   padding: 14px;
   background: var(--primary);
-  color: white;
+  color: var(--badge-text);
   border: none;
   border-radius: 8px;
   font-size: 15px;
@@ -1099,7 +1100,7 @@ body.dark-mode .language-select {
 
 .quantity-control button:hover {
   background: var(--primary);
-  color: white;
+  color: var(--badge-text);
 }
 
 .quantity-control span {
@@ -1151,7 +1152,7 @@ body.dark-mode .language-select {
   width: 100%;
   padding: 16px;
   background: var(--primary);
-  color: white;
+  color: var(--badge-text);
   border: none;
   border-radius: 8px;
   font-size: 16px;
