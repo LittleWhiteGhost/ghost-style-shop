@@ -106,9 +106,3 @@ ghost-style-shop/
 - CSS3 (Grid, Flexbox, CSS Variables)
 - Vanilla JavaScript
 - Telegram Web App SDK
-
-## 📝 Лицензия
-
-MIT
-
----
