@@ -112,5 +112,3 @@ ghost-style-shop/
 MIT
 
 ---
-
-Создано с 👻 для Ghost Style
