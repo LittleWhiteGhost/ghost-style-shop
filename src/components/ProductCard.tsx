@@ -1,6 +1,7 @@
 import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 interface ProductCardProps {
   id: string;
@@ -15,10 +16,26 @@ export default function ProductCard({ id, name, price, image, isNew, description
   const { addToCart } = useCart();
   const { isInWishlist, toggleWishlist } = useWishlist();
   const navigate = useNavigate();
+  const [isAdding, setIsAdding] = useState(false);
+  const [added, setAdded] = useState(false);
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation();
+    if (added) return;
+    
+    setIsAdding(true);
     addToCart({ id, name, price, image });
+    
+    // Имитация задержки добавления как на Ozon
+    setTimeout(() => {
+      setIsAdding(false);
+      setAdded(true);
+      
+      // Возвращаем кнопку в исходное состояние через 2 секунды
+      setTimeout(() => {
+        setAdded(false);
+      }, 2000);
+    }, 300);
   };
 
   const handleToggleWishlist = (e: React.MouseEvent) => {
@@ -43,8 +60,23 @@ export default function ProductCard({ id, name, price, image, isNew, description
       </div>
       <h3>{name}</h3>
       <p className="price">{price.toLocaleString('ru-RU')} ₽</p>
-      <button className="add-to-cart-btn" onClick={handleAddToCart}>
-        В корзину
+      <button 
+        className={`add-to-cart-btn ${added ? 'added' : ''} ${isAdding ? 'adding' : ''}`} 
+        onClick={handleAddToCart}
+        disabled={added || isAdding}
+      >
+        {isAdding ? (
+          <span className="loading-spinner"></span>
+        ) : added ? (
+          <>
+            <svg className="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>В корзине</span>
+          </>
+        ) : (
+          'В корзину'
+        )}
       </button>
     </div>
   );
