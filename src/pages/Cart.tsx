@@ -1,5 +1,7 @@
 import { useCart } from '../context/CartContext';
 import { useNavigate } from 'react-router-dom';
+import BackButton from '../components/BackButton';
+import { Minus, Plus, Trash2, ShoppingCart } from 'lucide-react';
 
 export default function Cart() {
   const { items, removeFromCart, updateQuantity, total, clearCart } = useCart();
@@ -8,13 +10,12 @@ export default function Cart() {
   if (items.length === 0) {
     return (
       <div className="page cart-page">
+        <BackButton to="/" label="К каталогу" />
         <div className="section-header">
           <h2>Корзина</h2>
         </div>
         <div className="empty-cart">
-          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1.5">
-            <path d="M30 40h40M35 40V30h30v10M25 40h50v45H25V40z"/>
-          </svg>
+          <ShoppingCart size={72} strokeWidth={1.5} />
           <h3>Корзина пуста</h3>
           <p>Добавьте товары из каталога</p>
         </div>
@@ -24,6 +25,7 @@ export default function Cart() {
 
   return (
     <div className="page cart-page">
+      <BackButton to="/" label="К каталогу" />
       <div className="section-header">
         <h2>Корзина</h2>
         <p className="section-subtitle">{items.length} товар(ов)</p>
@@ -41,14 +43,23 @@ export default function Cart() {
             </div>
             <div className="cart-item-actions">
               <div className="quantity-control">
-                <button onClick={() => updateQuantity(item.id, item.quantity - 1)}>-</button>
+                <button
+                  onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                  disabled={item.quantity <= 1}
+                  aria-label="Уменьшить"
+                >
+                  <Minus size={16} strokeWidth={2.4} />
+                </button>
                 <span>{item.quantity}</span>
-                <button onClick={() => updateQuantity(item.id, item.quantity + 1)}>+</button>
+                <button
+                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                  aria-label="Увеличить"
+                >
+                  <Plus size={16} strokeWidth={2.4} />
+                </button>
               </div>
-              <button className="remove-btn" onClick={() => removeFromCart(item.id)}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-                </svg>
+              <button className="remove-btn" onClick={() => removeFromCart(item.id)} aria-label="Удалить">
+                <Trash2 size={18} strokeWidth={2} />
               </button>
             </div>
           </div>

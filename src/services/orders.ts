@@ -41,5 +41,13 @@ export const OrderService = {
     const q = query(ordersRef, where('userId', '==', userId), orderBy('createdAt', 'desc'));
     const snapshot = await getDocs(q);
     return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Order));
+  },
+
+  // Получить все заказы (для админ-панели)
+  async getAllOrders(): Promise<Order[]> {
+    const ordersRef = collection(db, 'orders');
+    const q = query(ordersRef, orderBy('createdAt', 'desc'));
+    const snapshot = await getDocs(q);
+    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Order));
   }
 };

@@ -4,6 +4,7 @@ import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { OrderService } from '../services/orders';
 import { TelegramService } from '../services/telegram';
+import BackButton from '../components/BackButton';
 
 export default function Checkout() {
   const navigate = useNavigate();
@@ -76,6 +77,7 @@ export default function Checkout() {
 
   return (
     <div className="page">
+      <BackButton to="/cart" label="В корзину" />
       <div className="section-header">
         <h2>Оформление заказа</h2>
       </div>
