@@ -1,5 +1,6 @@
 import { useCart } from '../context/CartContext';
 import { useNavigate } from 'react-router-dom';
+import BackButton from '../components/BackButton';
 
 export default function Cart() {
   const { items, removeFromCart, updateQuantity, total, clearCart } = useCart();
@@ -8,6 +9,7 @@ export default function Cart() {
   if (items.length === 0) {
     return (
       <div className="page cart-page">
+        <BackButton to="/" label="К каталогу" />
         <div className="section-header">
           <h2>Корзина</h2>
         </div>
@@ -24,6 +26,7 @@ export default function Cart() {
 
   return (
     <div className="page cart-page">
+      <BackButton to="/" label="К каталогу" />
       <div className="section-header">
         <h2>Корзина</h2>
         <p className="section-subtitle">{items.length} товар(ов)</p>

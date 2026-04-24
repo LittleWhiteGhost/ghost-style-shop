@@ -1,5 +1,6 @@
 import { useWishlist } from '../context/WishlistContext';
 import ProductCard from '../components/ProductCard';
+import BackButton from '../components/BackButton';
 
 export default function Wishlist() {
   const { items } = useWishlist();
@@ -7,6 +8,7 @@ export default function Wishlist() {
   if (items.length === 0) {
     return (
       <div className="page">
+        <BackButton to="/" label="К каталогу" />
         <div className="section-header">
           <h2>Избранное</h2>
         </div>
@@ -23,6 +25,7 @@ export default function Wishlist() {
 
   return (
     <div className="page">
+      <BackButton to="/" label="К каталогу" />
       <div className="section-header">
         <h2>Избранное</h2>
         <p className="section-subtitle">{items.length} товар(ов)</p>

@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
+import { useToast } from '../context/ToastContext';
 import { useState } from 'react';
 
 const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
@@ -10,6 +11,7 @@ export default function ProductDetail() {
   const navigate = useNavigate();
   const { addToCart } = useCart();
   const { isInWishlist, toggleWishlist } = useWishlist();
+  const { showToast } = useToast();
   const [selectedSize, setSelectedSize] = useState('M');
 
   const product = location.state;
@@ -21,10 +23,15 @@ export default function ProductDetail() {
 
   const handleAddToCart = () => {
     addToCart({
-      id: product.id,
+      id: `${product.id}-${selectedSize}`,
       name: `${product.name} (${selectedSize})`,
       price: product.price,
       image: product.image
+    });
+    showToast({
+      title: `${product.name} (${selectedSize}) добавлен в корзину`,
+      linkText: 'Перейти в корзину',
+      linkTo: '/cart'
     });
   };
 
