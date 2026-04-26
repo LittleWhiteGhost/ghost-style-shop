@@ -73,7 +73,7 @@ export default function ProductCard({ id, name, price, image, isNew, category, d
           onClick={handleToggleWishlist}
           aria-label="В избранное"
         >
-          <Heart size={18} strokeWidth={2} fill={isInWishlist(id) ? 'currentColor' : 'none'} />
+          <Heart size={18} strokeWidth={2.8} fill={isInWishlist(id) ? 'currentColor' : 'none'} />
         </button>
         {useIllustration ? (
           <ProductIllustration category={category} title={name} />
@@ -86,19 +86,19 @@ export default function ProductCard({ id, name, price, image, isNew, category, d
         <p className="product-price">{price.toLocaleString('ru-RU')} ₽</p>
         {quantity === 0 ? (
           <button className="add-to-cart-btn" onClick={handleAddToCart}>
-            <ShoppingBag size={16} strokeWidth={2.2} />
+            <ShoppingBag size={16} strokeWidth={2.8} />
             В корзину
           </button>
         ) : (
           <div className="qty-control" onClick={(e) => e.stopPropagation()}>
             <button className="qty-btn" onClick={handleDec} aria-label="Уменьшить">
-              <Minus size={16} strokeWidth={2.4} />
+              <Minus size={16} strokeWidth={3} />
             </button>
             <span className="qty-value">
               {quantity} шт
             </span>
             <button className="qty-btn" onClick={handleInc} aria-label="Увеличить">
-              <Plus size={16} strokeWidth={2.4} />
+              <Plus size={16} strokeWidth={3} />
             </button>
           </div>
         )}

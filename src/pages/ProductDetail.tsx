@@ -79,7 +79,7 @@ export default function ProductDetail() {
 
           <div className="product-actions">
             <button className="btn-add-cart" onClick={handleAddToCart}>
-              <ShoppingBag size={18} strokeWidth={2.2} />
+              <ShoppingBag size={18} strokeWidth={2.8} />
               Добавить в корзину
             </button>
             <button
@@ -87,7 +87,7 @@ export default function ProductDetail() {
               onClick={() => toggleWishlist(product)}
               aria-label="В избранное"
             >
-              <Heart size={20} strokeWidth={2} fill={isInWishlist(product.id) ? 'currentColor' : 'none'} />
+              <Heart size={20} strokeWidth={2.8} fill={isInWishlist(product.id) ? 'currentColor' : 'none'} />
             </button>
           </div>
         </div>

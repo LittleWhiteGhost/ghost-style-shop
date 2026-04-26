@@ -84,7 +84,7 @@ export default function Hero() {
           </p>
           <Link to="/new" className="nf-hero__cta">
             Смотреть капсулу
-            <ArrowRight size={18} strokeWidth={2.4} />
+            <ArrowRight size={18} strokeWidth={3} />
           </Link>
         </div>
         <div className="nf-hero__art">

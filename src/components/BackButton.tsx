@@ -19,7 +19,7 @@ export default function BackButton({ to, label = 'Назад' }: BackButtonProps
 
   return (
     <button type="button" className="page-back" onClick={handleClick}>
-      <ArrowLeft size={18} strokeWidth={2.2} />
+      <ArrowLeft size={18} strokeWidth={2.8} />
       {label}
     </button>
   );

@@ -95,7 +95,7 @@ export default function Admin() {
       <BackButton to="/" label="К каталогу" />
       <div className="section-header admin-header">
         <div className="admin-title">
-          <ShieldCheck size={26} strokeWidth={2} />
+          <ShieldCheck size={26} strokeWidth={2.8} />
           <h2>Админ-панель</h2>
         </div>
         <p className="section-subtitle">{user.email}</p>
@@ -106,14 +106,14 @@ export default function Admin() {
           className={`tab-btn ${activeTab === 'products' ? 'active' : ''}`}
           onClick={() => setActiveTab('products')}
         >
-          <Package size={16} strokeWidth={2.2} />
+          <Package size={16} strokeWidth={2.8} />
           Товары
         </button>
         <button
           className={`tab-btn ${activeTab === 'orders' ? 'active' : ''}`}
           onClick={() => setActiveTab('orders')}
         >
-          <ClipboardList size={16} strokeWidth={2.2} />
+          <ClipboardList size={16} strokeWidth={2.8} />
           Заказы
         </button>
       </div>
@@ -175,7 +175,7 @@ export default function Admin() {
               Новинка
             </label>
             <button type="submit" className="btn-primary">
-              <Plus size={18} strokeWidth={2.4} />
+              <Plus size={18} strokeWidth={3} />
               Добавить
             </button>
           </form>
@@ -198,7 +198,7 @@ export default function Admin() {
                   onClick={() => handleDeleteProduct(p.id!)}
                   aria-label="Удалить"
                 >
-                  <Trash2 size={14} strokeWidth={2.2} />
+                  <Trash2 size={14} strokeWidth={2.8} />
                   Удалить
                 </button>
               </div>

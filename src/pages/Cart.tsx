@@ -59,18 +59,18 @@ export default function Cart() {
                   disabled={item.quantity <= 1}
                   aria-label="Уменьшить"
                 >
-                  <Minus size={16} strokeWidth={2.4} />
+                  <Minus size={16} strokeWidth={3} />
                 </button>
                 <span>{item.quantity}</span>
                 <button
                   onClick={() => updateQuantity(item.id, item.quantity + 1)}
                   aria-label="Увеличить"
                 >
-                  <Plus size={16} strokeWidth={2.4} />
+                  <Plus size={16} strokeWidth={3} />
                 </button>
               </div>
               <button className="remove-btn" onClick={() => removeFromCart(item.id)} aria-label="Удалить">
-                <Trash2 size={18} strokeWidth={2} />
+                <Trash2 size={18} strokeWidth={2.8} />
               </button>
             </div>
           </div>

@@ -2951,25 +2951,37 @@ header svg,
   shape-rendering: geometricPrecision;
 }
 
-/* slightly thicker strokes for higher visual weight */
+/* thicker, blocky strokes — editorial feel */
 .lucide {
-  stroke-width: 2.4;
+  stroke-width: 2.8;
+  stroke-miterlimit: 10;
 }
 
-/* Header / nav icons should feel chunkier and angular */
+/* Header / nav icons feel chunkier and stamp-like */
 header .lucide,
 .bottom-nav .lucide,
 nav .lucide {
-  stroke-width: 2.6;
+  stroke-width: 3;
 }
 
-/* Cart qty +/- and wishlist want maximum sharpness */
+/* Cart qty +/- and wishlist max sharpness */
 .qty-btn .lucide,
 .wishlist-btn .lucide {
-  stroke-width: 2.8;
+  stroke-width: 3.2;
 }
 
 /* Toast indicator */
 .toast .lucide {
-  stroke-width: 2.6;
+  stroke-width: 3;
+}
+
+/* Kill any pixel-level antialiasing softening on small icons */
+header svg,
+.bottom-nav svg,
+.qty-btn svg,
+.wishlist-btn svg,
+.product-card svg,
+.toast svg {
+  shape-rendering: geometricPrecision;
+  text-rendering: geometricPrecision;
 }
