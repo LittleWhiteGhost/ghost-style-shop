@@ -1,7 +1,14 @@
 import { useCart } from '../context/CartContext';
 import { useNavigate } from 'react-router-dom';
 import BackButton from '../components/BackButton';
+import ProductIllustration from '../components/ProductIllustration';
 import { Minus, Plus, Trash2, ShoppingCart } from 'lucide-react';
+
+function isPlaceholder(image: string | undefined): boolean {
+  if (!image) return true;
+  const lc = image.toLowerCase();
+  return lc.includes('placehold') || lc.includes('via.placeholder') || !/^https?:|^data:/.test(lc);
+}
 
 export default function Cart() {
   const { items, removeFromCart, updateQuantity, total, clearCart } = useCart();
@@ -35,7 +42,11 @@ export default function Cart() {
         {items.map(item => (
           <div key={item.id} className="cart-item">
             <div className="cart-item-image">
-              <img src={item.image} alt={item.name} />
+              {isPlaceholder(item.image) ? (
+                <ProductIllustration title={item.name} />
+              ) : (
+                <img src={item.image} alt={item.name} />
+              )}
             </div>
             <div className="cart-item-info">
               <h3>{item.name}</h3>

@@ -118,7 +118,7 @@ export default function Settings() {
               </svg>
               <div>
                 <span className="setting-title">О нас</span>
-                <span className="setting-subtitle">Ghost Style v1.0</span>
+                <span className="setting-subtitle">NOIR &amp; FLAME v1.0</span>
               </div>
             </div>
             <svg className="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

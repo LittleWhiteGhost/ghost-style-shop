@@ -9,28 +9,30 @@
 }
 
 :root {
-  /* Акцент — оранжевый (бренд) */
-  --accent: #ff6a00;
-  --accent-hover: #e65e00;
-  --accent-soft: #fff1e6;
+  /* Бренд NOIR & FLAME: orange / cream / ink */
+  --accent: #ff5a1f;
+  --accent-hover: #e94915;
+  --accent-soft: #ffe6d6;
   --accent-on: #ffffff;
+  --cream: #f5e6d3;
+  --ink: #0a0a0a;
 
-  /* Основная палитра — белая с оранжевым акцентом */
-  --primary: #ff6a00;
-  --primary-soft: #ff8533;
+  /* Совместимость со старыми переменными */
+  --primary: #ff5a1f;
+  --primary-soft: #ff7a47;
   --badge-text: #ffffff;
-  --secondary: #333333;
+  --secondary: #1a1a1a;
   --muted: #666666;
   --text: #0a0a0a;
-  --text-muted: #737373;
+  --text-muted: #5a5a5a;
   --text-light: #a3a3a3;
   --text-faint: #d4d4d4;
 
   /* Фоны */
-  --bg: #ffffff;
-  --bg-soft: #fafafa;
-  --bg-secondary: #f6f6f6;
-  --bg-elevated: #efefef;
+  --bg: #f5e6d3;
+  --bg-soft: #ede0cf;
+  --bg-secondary: #e8d8c2;
+  --bg-elevated: #fffaf2;
 
   /* Карточки и поверхности */
   --card-bg: #ffffff;
@@ -70,21 +72,23 @@
   --blur-saturate: 180%;
 }
 
-/* ===== ТЁМНАЯ ТЕМА — чёрно-оранжевая ===== */
+/* ===== ТЁМНАЯ ТЕМА — NOIR ===== */
 body.dark-mode {
   --accent: #ff7a1f;
   --accent-hover: #ff9447;
   --accent-soft: #2a1a0a;
-  --accent-on: #ffffff;
+  --accent-on: #0a0a0a;
+  --cream: #1a1410;
+  --ink: #f5e6d3;
 
   --primary: #ff7a1f;
   --primary-soft: #ff9447;
-  --badge-text: #ffffff;
+  --badge-text: #0a0a0a;
   --muted: #737373;
-  --text: #fafafa;
-  --text-muted: #a3a3a3;
-  --text-light: #737373;
-  --text-faint: #404040;
+  --text: #f5e6d3;
+  --text-muted: #a8987f;
+  --text-light: #6b5d4a;
+  --text-faint: #2e2820;
 
   --bg: #0a0a0a;
   --bg-soft: #111111;
@@ -115,13 +119,19 @@ body.dark-mode {
 
 /* ===== БАЗОВЫЕ СТИЛИ ===== */
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   background-color: var(--bg);
   color: var(--text);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color var(--transition-slow), color var(--transition-slow);
+}
+
+.display-font {
+  font-family: 'Bebas Neue', 'Inter', sans-serif;
+  letter-spacing: 0.04em;
+  font-weight: 400;
 }
 
 #root {
@@ -2271,4 +2281,644 @@ body.dark-mode .search-input:focus {
 .action-badge {
   background: var(--accent);
   color: var(--accent-on);
+}
+
+/* ============================================================
+   NOIR & FLAME — editorial / streetwear zine styling layer
+   ============================================================ */
+
+/* --- Halftone dot pattern utility --- */
+.nf-halftone {
+  background-image: radial-gradient(circle, var(--ink) 1.1px, transparent 1.4px);
+  background-size: 8px 8px;
+  background-position: 0 0;
+}
+.nf-halftone-dense {
+  background-image: radial-gradient(circle, var(--ink) 1.4px, transparent 1.6px);
+  background-size: 6px 6px;
+}
+.nf-halftone-orange {
+  background-image: radial-gradient(circle, var(--accent) 1.2px, transparent 1.5px);
+  background-size: 8px 8px;
+}
+
+/* --- Hero banner --- */
+.nf-hero {
+  position: relative;
+  margin: 0 -24px 56px;
+  padding: 56px 32px 64px;
+  background: var(--ink);
+  color: var(--cream);
+  overflow: hidden;
+  border-bottom: 4px solid var(--accent);
+}
+.nf-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  clip-path: polygon(60% 0, 100% 0, 100% 100%, 30% 100%);
+  z-index: 0;
+}
+.nf-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(245,230,211,0.18) 1.1px, transparent 1.5px);
+  background-size: 9px 9px;
+  z-index: 1;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+.nf-hero__inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 32px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.nf-hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.22em;
+  font-size: 14px;
+  color: var(--cream);
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+.nf-hero__eyebrow::before {
+  content: "";
+  width: 28px; height: 2px;
+  background: var(--accent);
+}
+.nf-hero__title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(56px, 9vw, 128px);
+  line-height: 0.92;
+  letter-spacing: 0.01em;
+  color: var(--cream);
+  margin: 0;
+}
+.nf-hero__title .flame {
+  color: var(--accent);
+  display: inline-block;
+}
+.nf-hero__amp {
+  display: inline-block;
+  transform: rotate(-6deg) translateY(-4px);
+  color: var(--accent);
+  margin: 0 0.05em;
+}
+.nf-hero__sub {
+  margin: 18px 0 28px;
+  max-width: 460px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: rgba(245,230,211,0.78);
+}
+.nf-hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 28px;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.18em;
+  text-decoration: none;
+  border: 0;
+  cursor: pointer;
+  transition: transform 0.25s ease, background 0.25s ease;
+  clip-path: polygon(0 0, 100% 0, 96% 100%, 0 100%);
+  padding-right: 36px;
+}
+.nf-hero__cta:hover {
+  background: var(--accent);
+  color: var(--cream);
+  transform: translateX(4px);
+}
+
+/* Hero illustration (right side flat silhouette) */
+.nf-hero__art {
+  position: relative;
+  height: 360px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 2;
+}
+.nf-hero__art svg {
+  width: 100%;
+  height: 100%;
+  max-width: 420px;
+}
+
+@media (max-width: 760px) {
+  .nf-hero {
+    padding: 40px 20px 48px;
+    margin: 0 -16px 40px;
+  }
+  .nf-hero__inner {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .nf-hero::before {
+    clip-path: polygon(0 70%, 100% 50%, 100% 100%, 0 100%);
+  }
+  .nf-hero__art {
+    height: 240px;
+  }
+}
+
+/* --- Strip / marquee row --- */
+.nf-strip {
+  position: relative;
+  margin: 0 -24px 48px;
+  padding: 18px 24px;
+  background: var(--accent);
+  color: var(--ink);
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.28em;
+  font-size: 16px;
+  text-transform: uppercase;
+  display: flex;
+  gap: 36px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.nf-strip span {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+}
+.nf-strip span::after {
+  content: "";
+  width: 6px; height: 6px;
+  background: var(--ink);
+  border-radius: 50%;
+}
+
+/* --- Editorial section header --- */
+.nf-section-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 20px;
+  align-items: end;
+  margin-bottom: 28px;
+  padding-bottom: 18px;
+  border-bottom: 2px solid var(--ink);
+}
+body.dark-mode .nf-section-head { border-bottom-color: var(--accent); }
+
+.nf-section-head__num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 38px;
+  line-height: 1;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+}
+.nf-section-head__title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(32px, 5vw, 56px);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  margin: 0;
+}
+.nf-section-head__meta {
+  text-align: right;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+/* --- Product card (NOIR & FLAME) --- */
+.product-card {
+  background: var(--card-bg);
+  border: 2px solid var(--ink);
+  border-radius: 0;
+  box-shadow: 6px 6px 0 var(--ink);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+body.dark-mode .product-card {
+  border-color: var(--accent);
+  box-shadow: 6px 6px 0 var(--accent);
+}
+.product-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 10px 10px 0 var(--accent);
+}
+body.dark-mode .product-card:hover {
+  box-shadow: 10px 10px 0 var(--cream);
+}
+.product-card .product-image,
+.product-card .product-image-wrap {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background:
+    radial-gradient(circle at 25% 25%, rgba(255,90,31,0.18) 0, transparent 55%),
+    radial-gradient(circle, rgba(10,10,10,0.07) 1.1px, transparent 1.4px),
+    var(--cream);
+  background-size: auto, 8px 8px, auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-bottom: 2px solid var(--ink);
+}
+body.dark-mode .product-card .product-image,
+body.dark-mode .product-card .product-image-wrap {
+  background:
+    radial-gradient(circle at 25% 25%, rgba(255,122,31,0.22) 0, transparent 55%),
+    radial-gradient(circle, rgba(245,230,211,0.10) 1.1px, transparent 1.4px),
+    #181410;
+  border-bottom-color: var(--accent);
+}
+.product-card .product-image img,
+.product-card .product-illustration {
+  width: 78%;
+  height: 78%;
+  object-fit: contain;
+}
+.product-card .product-illustration svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.product-card .new-badge,
+.product-card .product-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--accent);
+  color: var(--cream);
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.2em;
+  font-size: 12px;
+  padding: 6px 12px 4px;
+  z-index: 2;
+  clip-path: polygon(0 0, 100% 0, 92% 100%, 0 100%);
+}
+
+.product-card .product-info,
+.product-card .product-content {
+  padding: 16px 18px 18px;
+  background: var(--card-bg);
+}
+.product-card .product-name,
+.product-card .product-title {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.04em;
+  font-size: 22px;
+  line-height: 1.1;
+  color: var(--text);
+  margin: 0 0 6px;
+  text-transform: uppercase;
+  min-height: 0;
+  display: block;
+}
+.product-card .product-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+
+/* Product wishlist button on card */
+.product-card .wishlist-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  background: var(--cream);
+  border: 2px solid var(--ink);
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 3;
+  color: var(--ink);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.product-card .wishlist-btn:hover,
+.product-card .wishlist-btn.active {
+  background: var(--accent);
+  color: var(--cream);
+}
+body.dark-mode .product-card .wishlist-btn {
+  background: var(--ink);
+  border-color: var(--accent);
+  color: var(--cream);
+}
+
+/* Add-to-cart button on card */
+.product-card .add-to-cart-btn,
+.product-card .add-btn {
+  width: 100%;
+  background: var(--ink);
+  color: var(--cream);
+  border: 0;
+  border-radius: 0;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.18em;
+  font-size: 15px;
+  padding: 12px 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+  clip-path: polygon(0 0, 100% 0, 97% 100%, 0 100%);
+}
+.product-card .add-to-cart-btn:hover,
+.product-card .add-btn:hover {
+  background: var(--accent);
+  color: var(--cream);
+  transform: translateX(2px);
+}
+body.dark-mode .product-card .add-to-cart-btn,
+body.dark-mode .product-card .add-btn {
+  background: var(--accent);
+  color: var(--ink);
+}
+body.dark-mode .product-card .add-to-cart-btn:hover {
+  background: var(--cream);
+}
+
+/* qty-control on product card */
+.product-card .qty-control {
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  border: 2px solid var(--ink);
+  background: var(--cream);
+}
+body.dark-mode .product-card .qty-control {
+  border-color: var(--accent);
+  background: #181410;
+}
+.product-card .qty-control button {
+  flex: 0 0 44px;
+  background: var(--ink);
+  color: var(--cream);
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+}
+body.dark-mode .product-card .qty-control button {
+  background: var(--accent);
+  color: var(--ink);
+}
+.product-card .qty-control button:hover {
+  background: var(--accent);
+  color: var(--cream);
+}
+.product-card .qty-control .qty-value {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  color: var(--text);
+}
+
+/* Pages: page-back stays orange but with editorial type */
+.page-back {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-radius: 0;
+  border: 2px solid var(--ink);
+}
+body.dark-mode .page-back {
+  border-color: var(--accent);
+}
+
+/* --- Section headers used by Catalog/NewArrivals (legacy class) --- */
+.section-header h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(32px, 5vw, 56px);
+  letter-spacing: 0.03em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.new-tag {
+  display: inline-block;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.28em;
+  background: var(--ink);
+  color: var(--accent);
+  padding: 6px 14px 4px;
+  margin-top: 10px;
+  font-size: 13px;
+  clip-path: polygon(0 0, 100% 0, 95% 100%, 0 100%);
+}
+
+/* --- Header (NOIR & FLAME logo) --- */
+.logo-mark {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.logo-mark svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.logo-text {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.18em;
+  font-size: 20px;
+  line-height: 1;
+}
+.logo-text .amp {
+  color: var(--accent);
+  margin: 0 4px;
+  display: inline-block;
+  transform: rotate(-8deg) translateY(-1px);
+}
+
+/* Header link styles need bump */
+.header .nav-link, .header a, .nav-btn, .nav-item, .nav-icon-btn {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* --- Buttons (global override) --- */
+.btn-primary, button.btn-primary {
+  background: var(--ink);
+  color: var(--cream);
+  border-radius: 0;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border: 2px solid var(--ink);
+  clip-path: polygon(0 0, 100% 0, 97% 100%, 0 100%);
+}
+.btn-primary:hover:not(:disabled) {
+  background: var(--accent);
+  color: var(--cream);
+  border-color: var(--accent);
+  transform: translate(-1px, -1px);
+}
+body.dark-mode .btn-primary,
+body.dark-mode button.btn-primary {
+  background: var(--accent);
+  color: var(--ink);
+  border-color: var(--accent);
+}
+body.dark-mode .btn-primary:hover:not(:disabled) {
+  background: var(--cream);
+  border-color: var(--cream);
+}
+
+/* --- Cart/Wishlist/Empty states --- */
+.empty-state, .empty-cart, .empty-wishlist {
+  text-align: center;
+  padding: 60px 20px;
+  border: 2px dashed var(--ink);
+  background:
+    radial-gradient(circle, rgba(10,10,10,0.06) 1px, transparent 1.4px) 0 0 / 8px 8px,
+    var(--bg-soft);
+}
+body.dark-mode .empty-state,
+body.dark-mode .empty-cart,
+body.dark-mode .empty-wishlist {
+  border-color: var(--accent);
+  background:
+    radial-gradient(circle, rgba(255,122,31,0.08) 1px, transparent 1.4px) 0 0 / 8px 8px,
+    var(--bg-soft);
+}
+.empty-state h2, .empty-cart h2, .empty-wishlist h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 38px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* --- Cart-page button visibility (qty-control on /cart) --- */
+.quantity-control {
+  border: 2px solid var(--ink);
+  border-radius: 0;
+}
+body.dark-mode .quantity-control {
+  border-color: var(--accent);
+}
+
+/* --- Toast --- */
+.toast {
+  border: 2px solid var(--ink);
+  border-radius: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+  box-shadow: 6px 6px 0 var(--ink);
+}
+body.dark-mode .toast {
+  background: #181410;
+  color: var(--cream);
+  border-color: var(--accent);
+  box-shadow: 6px 6px 0 var(--accent);
+}
+
+/* --- Page padding for desktop wide hero negative margin --- */
+.page {
+  background-color: transparent;
+}
+
+/* --- Diagonal info card --- */
+.nf-callout {
+  position: relative;
+  margin: 48px 0;
+  padding: 36px 40px;
+  background: var(--ink);
+  color: var(--cream);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 24px;
+  overflow: hidden;
+}
+.nf-callout::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,90,31,0.4) 1.2px, transparent 1.5px);
+  background-size: 10px 10px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+.nf-callout h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(28px, 4vw, 44px);
+  letter-spacing: 0.04em;
+  line-height: 1;
+  margin: 0 0 8px;
+}
+.nf-callout p {
+  margin: 0;
+  color: rgba(245,230,211,0.7);
+  font-size: 14px;
+  max-width: 480px;
+}
+.nf-callout .nf-callout__cta {
+  position: relative;
+  z-index: 1;
+  background: var(--accent);
+  color: var(--cream);
+  border: 0;
+  padding: 14px 26px;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  clip-path: polygon(0 0, 100% 0, 96% 100%, 0 100%);
+  font-size: 15px;
+}
+.nf-callout .nf-callout__cta:hover {
+  background: var(--cream);
+  color: var(--ink);
+}
+@media (max-width: 760px) {
+  .nf-callout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Ribbon for /admin or /checkout headers --- */
+.nf-ribbon {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--cream);
+  padding: 6px 14px 4px;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.22em;
+  font-size: 13px;
+  text-transform: uppercase;
+  clip-path: polygon(0 0, 100% 0, 96% 100%, 0 100%);
 }

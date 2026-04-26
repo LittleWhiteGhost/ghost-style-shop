@@ -1,22 +1,21 @@
 import { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
+import Hero from '../components/Hero';
 import { ProductService, Product } from '../services/products';
 
-// Моковые данные для демонстрации
 const mockProducts: Product[] = [
-  { id: '1', name: 'Футболка Ghost', price: 2990, category: 'tshirt', image: 'https://placehold.co/400x400/1a1a1a/ff6a00?text=T-Shirt&font=montserrat', description: 'Стильная футболка' },
-  { id: '2', name: 'Худи Style', price: 4990, category: 'hoodie', image: 'https://placehold.co/400x400/1a1a1a/ff6a00?text=Hoodie&font=montserrat', description: 'Теплое худи' },
-  { id: '3', name: 'Джинсы Dark', price: 3990, category: 'jeans', image: 'https://placehold.co/400x400/1a1a1a/ff6a00?text=Jeans&font=montserrat', description: 'Классические джинсы' },
-  { id: '4', name: 'Кепка Ghost', price: 1490, category: 'cap', image: 'https://placehold.co/400x400/1a1a1a/ff6a00?text=Cap&font=montserrat', description: 'Стильная кепка' },
-  { id: '5', name: 'Рубашка Classic', price: 3490, category: 'shirt', image: 'https://placehold.co/400x400/1a1a1a/ff6a00?text=Shirt&font=montserrat', description: 'Классическая рубашка' },
-  { id: '6', name: 'Свитер Warm', price: 4290, category: 'sweater', image: 'https://placehold.co/400x400/1a1a1a/ff6a00?text=Sweater&font=montserrat', description: 'Теплый свитер' },
+  { id: '1', name: 'Футболка Ghost', price: 2990, category: 'tshirt', image: '', description: 'Стильная футболка' },
+  { id: '2', name: 'Худи Style', price: 4990, category: 'hoodie', image: '', description: 'Теплое худи' },
+  { id: '3', name: 'Джинсы Dark', price: 3990, category: 'jeans', image: '', description: 'Классические джинсы' },
+  { id: '4', name: 'Кепка Ghost', price: 1490, category: 'cap', image: '', description: 'Стильная кепка' },
+  { id: '5', name: 'Рубашка Classic', price: 3490, category: 'shirt', image: '', description: 'Классическая рубашка' },
+  { id: '6', name: 'Свитер Warm', price: 4290, category: 'sweater', image: '', description: 'Теплый свитер' },
 ];
 
 export default function Catalog() {
   const [products, setProducts] = useState<Product[]>(mockProducts);
 
   useEffect(() => {
-    // Попытка загрузить из Firebase, если не получится - используем моковые данные
     const loadProducts = async () => {
       try {
         const firebaseProducts = await ProductService.getAllProducts();
@@ -33,9 +32,20 @@ export default function Catalog() {
 
   return (
     <div className="page">
-      <div className="section-header">
-        <h2>Каталог</h2>
-        <p className="section-subtitle">Стильная одежда на каждый день</p>
+      <Hero />
+
+      <div className="nf-strip">
+        <span>Free shipping &gt; 5000₽</span>
+        <span>Angular silhouettes</span>
+        <span>Capsule drop 01</span>
+        <span>Worldwide</span>
+        <span>Halftone print</span>
+      </div>
+
+      <div className="nf-section-head">
+        <div className="nf-section-head__num">№01</div>
+        <h2 className="nf-section-head__title">Каталог</h2>
+        <div className="nf-section-head__meta">All products / Drop 01</div>
       </div>
 
       <div className="product-grid">
@@ -47,6 +57,8 @@ export default function Catalog() {
             price={product.price}
             image={product.image}
             isNew={product.isNew}
+            category={product.category}
+            description={product.description}
           />
         ))}
       </div>

@@ -11,8 +11,22 @@ import {
   User,
   Settings as SettingsIcon,
   ShieldCheck,
-  Ghost,
 } from 'lucide-react';
+
+function NoirFlameMark() {
+  return (
+    <span className="logo-mark" aria-hidden="true">
+      <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="36" height="36" fill="var(--ink)" />
+        <path d="M10 28 L20 6 L26 16 L22 28 Z" fill="var(--accent)" />
+        <circle cx="14" cy="14" r="1.4" fill="var(--cream)" />
+        <circle cx="20" cy="14" r="1.4" fill="var(--cream)" />
+        <circle cx="14" cy="20" r="1.4" fill="var(--cream)" />
+        <circle cx="20" cy="20" r="1.4" fill="var(--cream)" />
+      </svg>
+    </span>
+  );
+}
 
 export default function Header() {
   const { itemCount } = useCart();
@@ -27,8 +41,8 @@ export default function Header() {
     <header className="header">
       <div className="header-content">
         <Link to="/" className="logo">
-          <Ghost className="logo-icon" size={26} strokeWidth={2} />
-          <span className="logo-text">GHOST STYLE</span>
+          <NoirFlameMark />
+          <span className="logo-text">NOIR<span className="amp">&amp;</span>FLAME</span>
         </Link>
         <div className="header-actions">
           {userIsAdmin && (

@@ -3,6 +3,7 @@ import { useWishlist } from '../context/WishlistContext';
 import { useToast } from '../context/ToastContext';
 import { useNavigate } from 'react-router-dom';
 import { Heart, Plus, Minus, ShoppingBag } from 'lucide-react';
+import ProductIllustration from './ProductIllustration';
 
 interface ProductCardProps {
   id: string;
@@ -10,16 +11,29 @@ interface ProductCardProps {
   price: number;
   image: string;
   isNew?: boolean;
+  category?: string;
   description?: string;
 }
 
-export default function ProductCard({ id, name, price, image, isNew, description }: ProductCardProps) {
+function shouldUseIllustration(image: string | undefined): boolean {
+  if (!image) return true;
+  const lc = image.toLowerCase();
+  return (
+    lc.includes('placehold') ||
+    lc.includes('via.placeholder') ||
+    lc.startsWith('data:') === false && lc.startsWith('http') === false ||
+    lc === ''
+  );
+}
+
+export default function ProductCard({ id, name, price, image, isNew, category, description }: ProductCardProps) {
   const { addToCart, updateQuantity, getQuantity } = useCart();
   const { isInWishlist, toggleWishlist } = useWishlist();
   const { showToast } = useToast();
   const navigate = useNavigate();
 
   const quantity = getQuantity(id);
+  const useIllustration = shouldUseIllustration(image);
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -47,38 +61,48 @@ export default function ProductCard({ id, name, price, image, isNew, description
   };
 
   const handleClick = () => {
-    navigate(`/product/${id}`, { state: { id, name, price, image, isNew, description } });
+    navigate(`/product/${id}`, { state: { id, name, price, image, isNew, description, category } });
   };
 
   return (
     <div className="product-card" onClick={handleClick}>
-      {isNew && <div className="badge">NEW</div>}
-      <button className="wishlist-btn" onClick={handleToggleWishlist} aria-label="В избранное">
-        <Heart size={20} strokeWidth={2} fill={isInWishlist(id) ? 'currentColor' : 'none'} />
-      </button>
+      {isNew && <div className="product-badge">NEW</div>}
       <div className="product-image">
-        <img src={image} alt={name} />
-      </div>
-      <h3>{name}</h3>
-      <p className="price">{price.toLocaleString('ru-RU')} ₽</p>
-      {quantity === 0 ? (
-        <button className="add-to-cart-btn" onClick={handleAddToCart}>
-          <ShoppingBag size={16} strokeWidth={2.2} />
-          В корзину
+        <button
+          className={`wishlist-btn ${isInWishlist(id) ? 'active' : ''}`}
+          onClick={handleToggleWishlist}
+          aria-label="В избранное"
+        >
+          <Heart size={18} strokeWidth={2} fill={isInWishlist(id) ? 'currentColor' : 'none'} />
         </button>
-      ) : (
-        <div className="qty-control" onClick={(e) => e.stopPropagation()}>
-          <button className="qty-btn" onClick={handleDec} aria-label="Уменьшить">
-            <Minus size={16} strokeWidth={2.4} />
+        {useIllustration ? (
+          <ProductIllustration category={category} title={name} />
+        ) : (
+          <img src={image} alt={name} />
+        )}
+      </div>
+      <div className="product-info">
+        <h3 className="product-name">{name}</h3>
+        <p className="product-price">{price.toLocaleString('ru-RU')} ₽</p>
+        {quantity === 0 ? (
+          <button className="add-to-cart-btn" onClick={handleAddToCart}>
+            <ShoppingBag size={16} strokeWidth={2.2} />
+            В корзину
           </button>
-          <span className="qty-value">
-            {quantity}<small>шт</small>
-          </span>
-          <button className="qty-btn" onClick={handleInc} aria-label="Увеличить">
-            <Plus size={16} strokeWidth={2.4} />
-          </button>
-        </div>
-      )}
+        ) : (
+          <div className="qty-control" onClick={(e) => e.stopPropagation()}>
+            <button className="qty-btn" onClick={handleDec} aria-label="Уменьшить">
+              <Minus size={16} strokeWidth={2.4} />
+            </button>
+            <span className="qty-value">
+              {quantity} шт
+            </span>
+            <button className="qty-btn" onClick={handleInc} aria-label="Увеличить">
+              <Plus size={16} strokeWidth={2.4} />
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

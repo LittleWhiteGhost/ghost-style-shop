@@ -3,12 +3,12 @@ import ProductCard from '../components/ProductCard';
 import { ProductService, Product } from '../services/products';
 
 const mockNewProducts: Product[] = [
-  { id: '7', name: 'Куртка Winter Ghost', price: 7990, category: 'jacket', image: 'https://placehold.co/400x400/1a1a1a/ff6a00?text=Jacket&font=montserrat', isNew: true },
-  { id: '8', name: 'Кроссовки Style Pro', price: 6490, category: 'shoes', image: 'https://placehold.co/400x400/1a1a1a/ff6a00?text=Sneakers&font=montserrat', isNew: true },
-  { id: '9', name: 'Брюки Slim Fit', price: 3790, category: 'pants', image: 'https://placehold.co/400x400/1a1a1a/ff6a00?text=Pants&font=montserrat', isNew: true },
-  { id: '10', name: 'Пуховик Arctic', price: 9990, category: 'coat', image: 'https://placehold.co/400x400/1a1a1a/ff6a00?text=Coat&font=montserrat', isNew: true },
-  { id: '11', name: 'Жилет Urban', price: 4490, category: 'vest', image: 'https://placehold.co/400x400/1a1a1a/ff6a00?text=Vest&font=montserrat', isNew: true },
-  { id: '12', name: 'Толстовка Street', price: 5290, category: 'sweatshirt', image: 'https://placehold.co/400x400/1a1a1a/ff6a00?text=Sweatshirt&font=montserrat', isNew: true },
+  { id: '7', name: 'Куртка Winter', price: 7990, category: 'jacket', image: '', isNew: true },
+  { id: '8', name: 'Кроссовки Pro', price: 6490, category: 'sneaker', image: '', isNew: true },
+  { id: '9', name: 'Брюки Slim', price: 3790, category: 'pants', image: '', isNew: true },
+  { id: '10', name: 'Пуховик Arctic', price: 9990, category: 'coat', image: '', isNew: true },
+  { id: '11', name: 'Жилет Urban', price: 4490, category: 'vest', image: '', isNew: true },
+  { id: '12', name: 'Толстовка Street', price: 5290, category: 'sweatshirt', image: '', isNew: true },
 ];
 
 export default function NewArrivals() {
@@ -31,10 +31,18 @@ export default function NewArrivals() {
 
   return (
     <div className="page">
-      <div className="section-header">
-        <h2>Новинки</h2>
-        <p className="section-subtitle">Новые поступления этой недели</p>
-        <div className="new-tag">NEW SEASON</div>
+      <div className="nf-callout">
+        <div>
+          <h3>Drop 02 — Winter Capsule</h3>
+          <p>Зимняя капсула: тёплые силуэты, контраст оранжевого и кремового, графичные принты.</p>
+        </div>
+        <a className="nf-callout__cta" href="#products">Смотреть</a>
+      </div>
+
+      <div className="nf-section-head" id="products">
+        <div className="nf-section-head__num">№02</div>
+        <h2 className="nf-section-head__title">Новинки</h2>
+        <div className="nf-section-head__meta">New season / Drop 02</div>
       </div>
 
       <div className="product-grid">
@@ -46,6 +54,8 @@ export default function NewArrivals() {
             price={product.price}
             image={product.image}
             isNew={true}
+            category={product.category}
+            description={product.description}
           />
         ))}
       </div>
