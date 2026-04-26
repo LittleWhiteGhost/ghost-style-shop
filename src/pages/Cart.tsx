@@ -2,6 +2,7 @@ import { useCart } from '../context/CartContext';
 import { useNavigate } from 'react-router-dom';
 import BackButton from '../components/BackButton';
 import ProductIllustration from '../components/ProductIllustration';
+import { useLang } from '../i18n/LanguageContext';
 import { Minus, Plus, Trash2, ShoppingCart } from 'lucide-react';
 
 function isPlaceholder(image: string | undefined): boolean {
@@ -12,19 +13,20 @@ function isPlaceholder(image: string | undefined): boolean {
 
 export default function Cart() {
   const { items, removeFromCart, updateQuantity, total, clearCart } = useCart();
+  const { t } = useLang();
   const navigate = useNavigate();
 
   if (items.length === 0) {
     return (
       <div className="page cart-page">
-        <BackButton to="/" label="К каталогу" />
+        <BackButton to="/" label={t('cartGoToCatalog')} />
         <div className="section-header">
-          <h2>Корзина</h2>
+          <h2>{t('cartTitle')}</h2>
         </div>
         <div className="empty-cart">
           <ShoppingCart size={72} strokeWidth={1.5} />
-          <h3>Корзина пуста</h3>
-          <p>Добавьте товары из каталога</p>
+          <h3>{t('cartEmpty')}</h3>
+          <p>{t('cartEmptyHint')}</p>
         </div>
       </div>
     );
@@ -32,10 +34,10 @@ export default function Cart() {
 
   return (
     <div className="page cart-page">
-      <BackButton to="/" label="К каталогу" />
+      <BackButton to="/" label={t('cartGoToCatalog')} />
       <div className="section-header">
-        <h2>Корзина</h2>
-        <p className="section-subtitle">{items.length} товар(ов)</p>
+        <h2>{t('cartTitle')}</h2>
+        <p className="section-subtitle">{t('inCart', { n: items.length })}</p>
       </div>
 
       <div className="cart-items">
@@ -57,19 +59,19 @@ export default function Cart() {
                 <button
                   onClick={() => updateQuantity(item.id, item.quantity - 1)}
                   disabled={item.quantity <= 1}
-                  aria-label="Уменьшить"
+                  aria-label={t('decrease')}
                 >
                   <Minus size={16} strokeWidth={3} />
                 </button>
                 <span>{item.quantity}</span>
                 <button
                   onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                  aria-label="Увеличить"
+                  aria-label={t('increase')}
                 >
                   <Plus size={16} strokeWidth={3} />
                 </button>
               </div>
-              <button className="remove-btn" onClick={() => removeFromCart(item.id)} aria-label="Удалить">
+              <button className="remove-btn" onClick={() => removeFromCart(item.id)} aria-label={t('cartRemove')}>
                 <Trash2 size={18} strokeWidth={2.8} />
               </button>
             </div>
@@ -79,11 +81,11 @@ export default function Cart() {
 
       <div className="cart-summary">
         <div className="cart-total">
-          <span>Итого:</span>
+          <span>{t('cartTotal')}:</span>
           <span className="total-price">{total.toLocaleString('ru-RU')} ₽</span>
         </div>
-        <button className="btn-checkout" onClick={() => navigate('/checkout')}>Оформить заказ</button>
-        <button className="btn-clear" onClick={clearCart}>Очистить корзину</button>
+        <button className="btn-checkout" onClick={() => navigate('/checkout')}>{t('cartCheckout')}</button>
+        <button className="btn-clear" onClick={clearCart}>{t('cartRemove')}</button>
       </div>
     </div>
   );

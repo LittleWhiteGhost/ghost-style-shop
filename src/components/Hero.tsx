@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { useLang } from '../i18n/LanguageContext';
 
 function HeroFigure() {
   return (
@@ -68,22 +69,19 @@ function HeroFigure() {
 }
 
 export default function Hero() {
+  const { t } = useLang();
   return (
     <section className="nf-hero">
       <div className="nf-hero__inner">
         <div>
-          <span className="nf-hero__eyebrow">Drop / 01 / Autumn capsule</span>
+          <span className="nf-hero__eyebrow">{t('heroEyebrow')}</span>
           <h1 className="nf-hero__title">
             NOIR<span className="nf-hero__amp">&amp;</span>
             <span className="flame">FLAME</span>
           </h1>
-          <p className="nf-hero__sub">
-            Streetwear-капсула с акцентом на угловатые силуэты,
-            графичные принты и контраст оранжевого с чёрным.
-            Каждая вещь — заявление.
-          </p>
+          <p className="nf-hero__sub">{t('heroSub')}</p>
           <Link to="/new" className="nf-hero__cta">
-            Смотреть капсулу
+            {t('heroCta')}
             <ArrowRight size={18} strokeWidth={3} />
           </Link>
         </div>

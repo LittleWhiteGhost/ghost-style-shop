@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
 import { useAuth } from '../context/AuthContext';
+import { useLang } from '../i18n/LanguageContext';
 import { isAdmin } from '../utils/admin';
 import {
   Heart,
@@ -36,6 +37,7 @@ export default function Header() {
   const { itemCount } = useCart();
   const { items } = useWishlist();
   const { user } = useAuth();
+  const { t } = useLang();
   const location = useLocation();
 
   const isActive = (path: string) => location.pathname === path;
@@ -50,15 +52,15 @@ export default function Header() {
         </Link>
         <div className="header-actions">
           {userIsAdmin && (
-            <Link to="/admin" className={`header-action-btn ${isActive('/admin') ? 'active' : ''}`} aria-label="Админ-панель">
+            <Link to="/admin" className={`header-action-btn ${isActive('/admin') ? 'active' : ''}`} aria-label={t('navAdmin')}>
               <ShieldCheck size={22} strokeWidth={2.8} absoluteStrokeWidth />
             </Link>
           )}
-          <Link to="/wishlist" className="header-action-btn" aria-label="Избранное">
+          <Link to="/wishlist" className="header-action-btn" aria-label={t('navWishlist')}>
             <Heart size={22} strokeWidth={2.8} absoluteStrokeWidth />
             {items.length > 0 && <span className="action-badge">{items.length}</span>}
           </Link>
-          <Link to="/cart" className="header-action-btn" aria-label="Корзина">
+          <Link to="/cart" className="header-action-btn" aria-label={t('navCart')}>
             <ShoppingBag size={22} strokeWidth={2.8} absoluteStrokeWidth />
             {itemCount > 0 && <span className="action-badge">{itemCount}</span>}
           </Link>
@@ -68,19 +70,19 @@ export default function Header() {
       <nav className="bottom-nav">
         <Link to="/" className={`nav-btn ${isActive('/') ? 'active' : ''}`}>
           <Home className="nav-icon" size={22} strokeWidth={2.8} absoluteStrokeWidth />
-          <span>Каталог</span>
+          <span>{t('navCatalog')}</span>
         </Link>
         <Link to="/new" className={`nav-btn ${isActive('/new') ? 'active' : ''}`}>
           <Sparkles className="nav-icon" size={22} strokeWidth={2.8} absoluteStrokeWidth />
-          <span>Новинки</span>
+          <span>{t('navNew')}</span>
         </Link>
         <Link to="/account" className={`nav-btn ${isActive('/account') ? 'active' : ''}`}>
           <User className="nav-icon" size={22} strokeWidth={2.8} absoluteStrokeWidth />
-          <span>Аккаунт</span>
+          <span>{t('navAccount')}</span>
         </Link>
         <Link to="/settings" className={`nav-btn ${isActive('/settings') ? 'active' : ''}`}>
           <SettingsIcon className="nav-icon" size={22} strokeWidth={2.8} absoluteStrokeWidth />
-          <span>Настройки</span>
+          <span>{t('navSettings')}</span>
         </Link>
       </nav>
     </header>

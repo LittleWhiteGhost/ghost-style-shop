@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
 import { ProductService, Product } from '../services/products';
+import { useLang } from '../i18n/LanguageContext';
 
 const mockNewProducts: Product[] = [
   { id: '7', name: 'Куртка Winter', price: 7990, category: 'jacket', image: '', isNew: true },
@@ -13,6 +14,7 @@ const mockNewProducts: Product[] = [
 
 export default function NewArrivals() {
   const [products, setProducts] = useState<Product[]>(mockNewProducts);
+  const { t } = useLang();
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -34,14 +36,14 @@ export default function NewArrivals() {
       <div className="nf-callout">
         <div>
           <h3>Drop 02 — Winter Capsule</h3>
-          <p>Зимняя капсула: тёплые силуэты, контраст оранжевого и кремового, графичные принты.</p>
+          <p>{t('callout')}</p>
         </div>
-        <a className="nf-callout__cta" href="#products">Смотреть</a>
+        <a className="nf-callout__cta" href="#products">{t('heroCta')}</a>
       </div>
 
       <div className="nf-section-head" id="products">
         <div className="nf-section-head__num">№02</div>
-        <h2 className="nf-section-head__title">Новинки</h2>
+        <h2 className="nf-section-head__title">{t('newArrivalsTitle')}</h2>
         <div className="nf-section-head__meta">New season / Drop 02</div>
       </div>
 

@@ -1,6 +1,7 @@
 import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
 import { useToast } from '../context/ToastContext';
+import { useLang } from '../i18n/LanguageContext';
 import { useNavigate } from 'react-router-dom';
 import { Heart, Plus, Minus, ShoppingBag } from 'lucide-react';
 import ProductIllustration from './ProductIllustration';
@@ -30,6 +31,7 @@ export default function ProductCard({ id, name, price, image, isNew, category, d
   const { addToCart, updateQuantity, getQuantity } = useCart();
   const { isInWishlist, toggleWishlist } = useWishlist();
   const { showToast } = useToast();
+  const { t } = useLang();
   const navigate = useNavigate();
 
   const quantity = getQuantity(id);
@@ -39,8 +41,8 @@ export default function ProductCard({ id, name, price, image, isNew, category, d
     e.stopPropagation();
     addToCart({ id, name, price, image });
     showToast({
-      title: `${name} добавлен в корзину`,
-      linkText: 'Перейти в корзину',
+      title: t('toastAdded', { name }),
+      linkText: t('toastGoToCart'),
       linkTo: '/cart'
     });
   };
@@ -66,12 +68,12 @@ export default function ProductCard({ id, name, price, image, isNew, category, d
 
   return (
     <div className="product-card" onClick={handleClick}>
-      {isNew && <div className="product-badge">NEW</div>}
+      {isNew && <div className="product-badge">{t('newBadge')}</div>}
       <div className="product-image">
         <button
           className={`wishlist-btn ${isInWishlist(id) ? 'active' : ''}`}
           onClick={handleToggleWishlist}
-          aria-label="В избранное"
+          aria-label={t('toggleFavorite')}
         >
           <Heart size={18} strokeWidth={2.8} fill={isInWishlist(id) ? 'currentColor' : 'none'} />
         </button>
@@ -87,17 +89,17 @@ export default function ProductCard({ id, name, price, image, isNew, category, d
         {quantity === 0 ? (
           <button className="add-to-cart-btn" onClick={handleAddToCart}>
             <ShoppingBag size={16} strokeWidth={2.8} />
-            В корзину
+            {t('addToCart')}
           </button>
         ) : (
           <div className="qty-control" onClick={(e) => e.stopPropagation()}>
-            <button className="qty-btn" onClick={handleDec} aria-label="Уменьшить">
+            <button className="qty-btn" onClick={handleDec} aria-label={t('decrease')}>
               <Minus size={16} strokeWidth={3} />
             </button>
             <span className="qty-value">
-              {quantity} шт
+              {t('inCart', { n: quantity })}
             </span>
-            <button className="qty-btn" onClick={handleInc} aria-label="Увеличить">
+            <button className="qty-btn" onClick={handleInc} aria-label={t('increase')}>
               <Plus size={16} strokeWidth={3} />
             </button>
           </div>

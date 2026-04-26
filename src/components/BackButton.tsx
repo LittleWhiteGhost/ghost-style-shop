@@ -1,13 +1,16 @@
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
+import { useLang } from '../i18n/LanguageContext';
 
 interface BackButtonProps {
   to?: string;
   label?: string;
 }
 
-export default function BackButton({ to, label = 'Назад' }: BackButtonProps) {
+export default function BackButton({ to, label }: BackButtonProps) {
   const navigate = useNavigate();
+  const { t } = useLang();
+  const text = label ?? t('back');
 
   const handleClick = () => {
     if (to) {
@@ -20,7 +23,7 @@ export default function BackButton({ to, label = 'Назад' }: BackButtonProps
   return (
     <button type="button" className="page-back" onClick={handleClick}>
       <ArrowLeft size={18} strokeWidth={2.8} />
-      {label}
+      {text}
     </button>
   );
 }

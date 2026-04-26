@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthService } from '../services/auth';
+import { useLang } from '../i18n/LanguageContext';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -8,6 +9,7 @@ export default function Login() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { t } = useLang();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,14 +50,14 @@ export default function Login() {
           <span>NOIR &amp; FLAME</span>
         </Link>
 
-        <h1>Вход</h1>
-        <p className="auth-subtitle">Войдите в свой аккаунт</p>
+        <h1>{t('loginTitle')}</h1>
+        <p className="auth-subtitle">{t('loginSubtitle')}</p>
 
         {error && <div className="error-message">{error}</div>}
 
         <form onSubmit={handleSubmit} className="auth-form">
           <div className="form-group">
-            <label>Email</label>
+            <label>{t('loginEmail')}</label>
             <input
               type="email"
               value={email}
@@ -66,22 +68,22 @@ export default function Login() {
           </div>
 
           <div className="form-group">
-            <label>Пароль</label>
+            <label>{t('loginPassword')}</label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Введите пароль"
+              placeholder={t('loginPasswordPlaceholder')}
               required
             />
           </div>
 
           <button type="submit" className="btn-primary" disabled={loading}>
-            {loading ? 'Вход...' : 'Войти'}
+            {loading ? '...' : t('loginSubmit')}
           </button>
         </form>
 
-        <div className="auth-divider">или</div>
+        <div className="auth-divider">{t('loginOr')}</div>
 
         <button className="btn-google" onClick={handleGoogleLogin} disabled={loading}>
           <svg viewBox="0 0 24 24" width="20" height="20">
@@ -90,11 +92,11 @@ export default function Login() {
             <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
             <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
           </svg>
-          Войти через Google
+          {t('loginGoogle')}
         </button>
 
         <p className="auth-footer">
-          Нет аккаунта? <Link to="/register">Зарегистрироваться</Link>
+          {t('loginNoAccount')} <Link to="/register">{t('loginRegisterCta')}</Link>
         </p>
       </div>
     </div>

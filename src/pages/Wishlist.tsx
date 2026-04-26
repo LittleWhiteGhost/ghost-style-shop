@@ -1,22 +1,24 @@
 import { useWishlist } from '../context/WishlistContext';
 import ProductCard from '../components/ProductCard';
 import BackButton from '../components/BackButton';
+import { useLang } from '../i18n/LanguageContext';
 import { Heart } from 'lucide-react';
 
 export default function Wishlist() {
   const { items } = useWishlist();
+  const { t } = useLang();
 
   if (items.length === 0) {
     return (
       <div className="page">
-        <BackButton to="/" label="К каталогу" />
+        <BackButton to="/" label={t('cartGoToCatalog')} />
         <div className="section-header">
-          <h2>Избранное</h2>
+          <h2>{t('wishlistTitle')}</h2>
         </div>
         <div className="empty-cart">
           <Heart size={72} strokeWidth={1.5} />
-          <h3>Список избранного пуст</h3>
-          <p>Добавьте товары, которые вам понравились</p>
+          <h3>{t('wishlistEmpty')}</h3>
+          <p>{t('wishlistEmptyHint')}</p>
         </div>
       </div>
     );
@@ -24,10 +26,10 @@ export default function Wishlist() {
 
   return (
     <div className="page">
-      <BackButton to="/" label="К каталогу" />
+      <BackButton to="/" label={t('cartGoToCatalog')} />
       <div className="section-header">
-        <h2>Избранное</h2>
-        <p className="section-subtitle">{items.length} товар(ов)</p>
+        <h2>{t('wishlistTitle')}</h2>
+        <p className="section-subtitle">{t('inCart', { n: items.length })}</p>
       </div>
       <div className="product-grid">
         {items.map(item => (

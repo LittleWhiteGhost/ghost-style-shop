@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
 import Hero from '../components/Hero';
 import { ProductService, Product } from '../services/products';
+import { useLang } from '../i18n/LanguageContext';
 
 const mockProducts: Product[] = [
   { id: '1', name: 'Футболка Ghost', price: 2990, category: 'tshirt', image: '', description: 'Стильная футболка' },
@@ -14,6 +15,7 @@ const mockProducts: Product[] = [
 
 export default function Catalog() {
   const [products, setProducts] = useState<Product[]>(mockProducts);
+  const { t } = useLang();
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -35,17 +37,17 @@ export default function Catalog() {
       <Hero />
 
       <div className="nf-strip">
-        <span>Free shipping &gt; 5000₽</span>
-        <span>Angular silhouettes</span>
-        <span>Capsule drop 01</span>
-        <span>Worldwide</span>
-        <span>Halftone print</span>
+        <span>{t('marqueeFreeShipping')}</span>
+        <span>{t('marqueeAngular')}</span>
+        <span>{t('marqueeCapsule')}</span>
+        <span>{t('marqueeWorldwide')}</span>
+        <span>{t('marqueeHalftone')}</span>
       </div>
 
       <div className="nf-section-head">
         <div className="nf-section-head__num">№01</div>
-        <h2 className="nf-section-head__title">Каталог</h2>
-        <div className="nf-section-head__meta">All products / Drop 01</div>
+        <h2 className="nf-section-head__title">{t('catalogTitle')}</h2>
+        <div className="nf-section-head__meta">{t('catalogMeta')}</div>
       </div>
 
       <div className="product-grid">
