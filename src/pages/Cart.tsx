@@ -37,7 +37,7 @@ export default function Cart() {
       <BackButton to="/" label={t('cartGoToCatalog')} />
       <div className="section-header">
         <h2>{t('cartTitle')}</h2>
-        <p className="section-subtitle">{t('inCart', { n: items.length })}</p>
+        <p className="section-subtitle">{t('inCart', { n: items.reduce((s, i) => s + i.quantity, 0) })}</p>
       </div>
 
       <div className="cart-items">
