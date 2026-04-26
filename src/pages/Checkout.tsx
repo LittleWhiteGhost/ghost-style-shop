@@ -76,7 +76,7 @@ export default function Checkout() {
   }
 
   return (
-    <div className="page">
+    <div className="page checkout-page">
       <BackButton to="/cart" label="В корзину" />
       <div className="section-header">
         <h2>Оформление заказа</h2>

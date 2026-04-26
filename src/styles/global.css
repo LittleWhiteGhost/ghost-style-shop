@@ -2985,3 +2985,216 @@ header svg,
   shape-rendering: geometricPrecision;
   text-rendering: geometricPrecision;
 }
+
+/* ===========================
+   NOIR & FLAME — responsive polish
+   Mobile-first base lives above. These rules cap layout width on
+   tablet/desktop and progressively scale grids and side-by-side
+   layouts so the site doesn't look stretched on wide screens.
+   =========================== */
+
+/* container caps */
+.header-content,
+.bottom-nav {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bottom-nav {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+/* Auth back row */
+.auth-back {
+  text-align: left;
+  margin-bottom: 18px;
+}
+
+.auth-back .page-back {
+  margin: 0;
+}
+
+/* Tablets */
+@media (min-width: 600px) {
+  .header-content {
+    padding: 16px 28px;
+  }
+  .content {
+    padding: 28px 24px 120px;
+  }
+  .section-header h2 {
+    font-size: 30px;
+  }
+  .nav-btn span {
+    font-size: 11px;
+  }
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .product-detail-content {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 32px;
+  }
+  .product-detail-image {
+    flex: 1 1 50%;
+    max-width: 480px;
+  }
+  .product-detail-info {
+    flex: 1 1 50%;
+  }
+  .cart-page .cart-content,
+  .cart-page > .page > .cart-items + .cart-summary {
+    /* keep mobile stacked unless explicitly grid'd */
+  }
+  .auth-container {
+    max-width: 440px;
+  }
+}
+
+/* Small laptops */
+@media (min-width: 960px) {
+  .content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 32px 120px;
+  }
+  .product-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+  }
+  .nf-hero {
+    padding: 64px 56px;
+  }
+  .nf-hero__title {
+    font-size: clamp(56px, 8vw, 120px);
+  }
+  /* Cart desktop: items on left, summary sticky on right */
+  .cart-page .page {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 28px;
+    align-items: start;
+  }
+  .cart-page .page > .section-header,
+  .cart-page .page > .page-back {
+    grid-column: 1 / -1;
+  }
+  .cart-page .page > .cart-items {
+    grid-column: 1 / 2;
+  }
+  .cart-page .page > .cart-summary {
+    grid-column: 2 / 3;
+    position: sticky;
+    top: 96px;
+  }
+  .cart-page .page > .empty-cart {
+    grid-column: 1 / -1;
+  }
+  /* Checkout side-by-side */
+  .checkout-page .checkout-form {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 28px;
+    align-items: start;
+  }
+  .checkout-page .checkout-summary {
+    position: sticky;
+    top: 96px;
+  }
+}
+
+/* Big screens */
+@media (min-width: 1280px) {
+  .product-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .nf-hero__title {
+    font-size: clamp(64px, 7vw, 140px);
+  }
+}
+
+/* Small phones — keep things readable */
+@media (max-width: 420px) {
+  .header-content {
+    padding: 12px 14px;
+  }
+  .logo-text {
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
+  .header-action-btn {
+    width: 38px;
+    height: 38px;
+  }
+  .header-action-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+  .nav-btn span {
+    font-size: 9.5px;
+  }
+  .content {
+    padding: 16px 12px 110px;
+  }
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .section-header h2 {
+    font-size: 22px;
+  }
+  .product-card {
+    padding: 8px;
+  }
+  .product-card h3 {
+    font-size: 13px;
+  }
+  .nf-hero {
+    padding: 28px 16px 36px;
+    margin: 0 -12px 28px;
+  }
+  .nf-hero__title {
+    font-size: clamp(40px, 14vw, 64px) !important;
+    line-height: 0.92;
+  }
+  .nf-section-head {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    text-align: left;
+  }
+  .nf-section-head__meta {
+    text-align: left;
+  }
+  .nf-strip {
+    margin: 0 -12px 32px;
+    padding: 12px 12px;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    gap: 20px;
+  }
+  .auth-page {
+    padding: 16px 12px;
+  }
+  .cart-item {
+    padding: 12px;
+    gap: 12px;
+  }
+  .cart-item-image {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+/* Prevent horizontal overflow from any wide child */
+html, body {
+  overflow-x: hidden;
+}
+
+/* Make all images/svgs scale nicely */
+img, svg {
+  max-width: 100%;
+}

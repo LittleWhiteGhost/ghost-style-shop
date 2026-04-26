@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthService } from '../services/auth';
 import { useLang } from '../i18n/LanguageContext';
+import BackButton from '../components/BackButton';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -43,6 +44,9 @@ export default function Login() {
   return (
     <div className="auth-page">
       <div className="auth-container">
+        <div className="auth-back">
+          <BackButton to="/" />
+        </div>
         <Link to="/" className="auth-logo">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M9 10h.01M15 10h.01M12 2a8 8 0 0 1 8 8v12l-3-3-2.5 2.5L12 19l-2.5 2.5L7 19l-3 3V10a8 8 0 0 1 8-8z"/>
