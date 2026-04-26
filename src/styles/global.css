@@ -129,7 +129,7 @@ body {
 }
 
 .display-font {
-  font-family: 'Bebas Neue', 'Inter', sans-serif;
+  font-family: 'Bebas Neue', 'Oswald', 'Inter', sans-serif;
   letter-spacing: 0.04em;
   font-weight: 400;
 }
@@ -2302,13 +2302,13 @@ body.dark-mode .search-input:focus {
   background-size: 8px 8px;
 }
 
-/* --- Hero banner --- */
+/* --- Hero banner (fixed: cream on ink, doesn't flip in dark mode) --- */
 .nf-hero {
   position: relative;
   margin: 0 -24px 56px;
   padding: 56px 32px 64px;
-  background: var(--ink);
-  color: var(--cream);
+  background: #0a0a0a;
+  color: #f5e6d3;
   overflow: hidden;
   border-bottom: 4px solid var(--accent);
 }
@@ -2324,11 +2324,10 @@ body.dark-mode .search-input:focus {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle, rgba(245,230,211,0.18) 1.1px, transparent 1.5px);
+  background-image: radial-gradient(circle, rgba(245,230,211,0.10) 1.1px, transparent 1.5px);
   background-size: 9px 9px;
   z-index: 1;
   pointer-events: none;
-  mix-blend-mode: screen;
 }
 .nf-hero__inner {
   position: relative;
@@ -2344,10 +2343,10 @@ body.dark-mode .search-input:focus {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Bebas Neue', 'Oswald', sans-serif;
   letter-spacing: 0.22em;
   font-size: 14px;
-  color: var(--cream);
+  color: #f5e6d3;
   margin-bottom: 18px;
   text-transform: uppercase;
 }
@@ -2357,16 +2356,19 @@ body.dark-mode .search-input:focus {
   background: var(--accent);
 }
 .nf-hero__title {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Bebas Neue', 'Oswald', sans-serif;
   font-size: clamp(56px, 9vw, 128px);
   line-height: 0.92;
   letter-spacing: 0.01em;
-  color: var(--cream);
+  color: #f5e6d3;
   margin: 0;
 }
 .nf-hero__title .flame {
-  color: var(--accent);
+  color: #0a0a0a;
   display: inline-block;
+  background: var(--accent);
+  padding: 0 8px;
+  margin-left: 4px;
 }
 .nf-hero__amp {
   display: inline-block;
@@ -2379,28 +2381,28 @@ body.dark-mode .search-input:focus {
   max-width: 460px;
   font-size: 15px;
   line-height: 1.55;
-  color: rgba(245,230,211,0.78);
+  color: rgba(245,230,211,0.82);
 }
 .nf-hero__cta {
   display: inline-flex;
   align-items: center;
   gap: 10px;
   padding: 16px 28px;
-  background: var(--cream);
-  color: var(--ink);
-  font-family: 'Bebas Neue', sans-serif;
+  background: #f5e6d3;
+  color: #0a0a0a;
+  font-family: 'Bebas Neue', 'Oswald', sans-serif;
   font-size: 18px;
   letter-spacing: 0.18em;
   text-decoration: none;
   border: 0;
   cursor: pointer;
-  transition: transform 0.25s ease, background 0.25s ease;
+  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
   clip-path: polygon(0 0, 100% 0, 96% 100%, 0 100%);
   padding-right: 36px;
 }
 .nf-hero__cta:hover {
   background: var(--accent);
-  color: var(--cream);
+  color: #f5e6d3;
   transform: translateX(4px);
 }
 
@@ -2443,7 +2445,7 @@ body.dark-mode .search-input:focus {
   padding: 18px 24px;
   background: var(--accent);
   color: var(--ink);
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Bebas Neue', 'Oswald', sans-serif;
   letter-spacing: 0.28em;
   font-size: 16px;
   text-transform: uppercase;
@@ -2477,14 +2479,14 @@ body.dark-mode .search-input:focus {
 body.dark-mode .nf-section-head { border-bottom-color: var(--accent); }
 
 .nf-section-head__num {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Bebas Neue', 'Oswald', sans-serif;
   font-size: 38px;
   line-height: 1;
   color: var(--accent);
   letter-spacing: 0.08em;
 }
 .nf-section-head__title {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Bebas Neue', 'Oswald', sans-serif;
   font-size: clamp(32px, 5vw, 56px);
   line-height: 1;
   letter-spacing: 0.02em;
@@ -2561,7 +2563,7 @@ body.dark-mode .product-card .product-image-wrap {
   left: 12px;
   background: var(--accent);
   color: var(--cream);
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Bebas Neue', 'Oswald', sans-serif;
   letter-spacing: 0.2em;
   font-size: 12px;
   padding: 6px 12px 4px;
@@ -2575,19 +2577,23 @@ body.dark-mode .product-card .product-image-wrap {
   background: var(--card-bg);
 }
 .product-card .product-name,
-.product-card .product-title {
-  font-family: 'Bebas Neue', sans-serif;
+.product-card .product-title,
+.product-card h3 {
+  font-family: 'Bebas Neue', 'Oswald', sans-serif;
   letter-spacing: 0.04em;
-  font-size: 22px;
+  font-size: 20px;
   line-height: 1.1;
   color: var(--text);
   margin: 0 0 6px;
   text-transform: uppercase;
   min-height: 0;
-  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .product-card .product-price {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Bebas Neue', 'Oswald', sans-serif;
   font-size: 26px;
   letter-spacing: 0.04em;
   color: var(--accent);
@@ -2631,16 +2637,17 @@ body.dark-mode .product-card .wishlist-btn {
   color: var(--cream);
   border: 0;
   border-radius: 0;
-  font-family: 'Bebas Neue', sans-serif;
-  letter-spacing: 0.18em;
+  font-family: 'Bebas Neue', 'Oswald', sans-serif;
+  letter-spacing: 0.14em;
   font-size: 15px;
-  padding: 12px 14px;
+  padding: 11px 12px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
   cursor: pointer;
   text-transform: uppercase;
+  white-space: nowrap;
   transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
   clip-path: polygon(0 0, 100% 0, 97% 100%, 0 100%);
 }
@@ -2680,7 +2687,7 @@ body.dark-mode .product-card .qty-control {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Bebas Neue', 'Oswald', sans-serif;
   font-size: 22px;
 }
 body.dark-mode .product-card .qty-control button {
@@ -2696,7 +2703,7 @@ body.dark-mode .product-card .qty-control button {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Bebas Neue', 'Oswald', sans-serif;
   font-size: 18px;
   letter-spacing: 0.1em;
   color: var(--text);
@@ -2704,7 +2711,7 @@ body.dark-mode .product-card .qty-control button {
 
 /* Pages: page-back stays orange but with editorial type */
 .page-back {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Bebas Neue', 'Oswald', sans-serif;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   border-radius: 0;
@@ -2716,7 +2723,7 @@ body.dark-mode .page-back {
 
 /* --- Section headers used by Catalog/NewArrivals (legacy class) --- */
 .section-header h2 {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Bebas Neue', 'Oswald', sans-serif;
   font-size: clamp(32px, 5vw, 56px);
   letter-spacing: 0.03em;
   line-height: 1;
@@ -2724,7 +2731,7 @@ body.dark-mode .page-back {
 }
 .new-tag {
   display: inline-block;
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Bebas Neue', 'Oswald', sans-serif;
   letter-spacing: 0.28em;
   background: var(--ink);
   color: var(--accent);
@@ -2749,7 +2756,7 @@ body.dark-mode .page-back {
   display: block;
 }
 .logo-text {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Bebas Neue', 'Oswald', sans-serif;
   letter-spacing: 0.18em;
   font-size: 20px;
   line-height: 1;
@@ -2763,7 +2770,7 @@ body.dark-mode .page-back {
 
 /* Header link styles need bump */
 .header .nav-link, .header a, .nav-btn, .nav-item, .nav-icon-btn {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Bebas Neue', 'Oswald', sans-serif;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
@@ -2773,7 +2780,7 @@ body.dark-mode .page-back {
   background: var(--ink);
   color: var(--cream);
   border-radius: 0;
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Bebas Neue', 'Oswald', sans-serif;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   border: 2px solid var(--ink);
@@ -2814,7 +2821,7 @@ body.dark-mode .empty-wishlist {
     var(--bg-soft);
 }
 .empty-state h2, .empty-cart h2, .empty-wishlist h2 {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Bebas Neue', 'Oswald', sans-serif;
   font-size: 38px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -2873,7 +2880,7 @@ body.dark-mode .toast {
   pointer-events: none;
 }
 .nf-callout h3 {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Bebas Neue', 'Oswald', sans-serif;
   font-size: clamp(28px, 4vw, 44px);
   letter-spacing: 0.04em;
   line-height: 1;
@@ -2892,7 +2899,7 @@ body.dark-mode .toast {
   color: var(--cream);
   border: 0;
   padding: 14px 26px;
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Bebas Neue', 'Oswald', sans-serif;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   cursor: pointer;
@@ -2916,7 +2923,7 @@ body.dark-mode .toast {
   background: var(--accent);
   color: var(--cream);
   padding: 6px 14px 4px;
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Bebas Neue', 'Oswald', sans-serif;
   letter-spacing: 0.22em;
   font-size: 13px;
   text-transform: uppercase;
