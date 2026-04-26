@@ -85,7 +85,7 @@ export default function Cart() {
           <span className="total-price">{total.toLocaleString('ru-RU')} ₽</span>
         </div>
         <button className="btn-checkout" onClick={() => navigate('/checkout')}>{t('cartCheckout')}</button>
-        <button className="btn-clear" onClick={clearCart}>{t('cartRemove')}</button>
+        <button className="btn-clear" onClick={clearCart}>{t('cartClear')}</button>
       </div>
     </div>
   );

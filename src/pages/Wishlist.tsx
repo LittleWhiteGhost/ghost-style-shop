@@ -29,7 +29,7 @@ export default function Wishlist() {
       <BackButton to="/" label={t('cartGoToCatalog')} />
       <div className="section-header">
         <h2>{t('wishlistTitle')}</h2>
-        <p className="section-subtitle">{t('inCart', { n: items.length })}</p>
+        <p className="section-subtitle">{t('accountFavoritesCount', { n: items.length })}</p>
       </div>
       <div className="product-grid">
         {items.map(item => (

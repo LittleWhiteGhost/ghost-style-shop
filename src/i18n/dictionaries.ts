@@ -41,6 +41,7 @@ const ru = {
   cartTotal: 'Итого',
   cartCheckout: 'Оформить заказ',
   cartRemove: 'Удалить',
+  cartClear: 'Очистить корзину',
 
   // Wishlist
   wishlistTitle: 'Избранное',
@@ -149,6 +150,7 @@ const en: typeof ru = {
   cartTotal: 'Total',
   cartCheckout: 'Checkout',
   cartRemove: 'Remove',
+  cartClear: 'Clear cart',
 
   wishlistTitle: 'Favorites',
   wishlistEmpty: 'Favorites list is empty',
@@ -251,6 +253,7 @@ const uz: typeof ru = {
   cartTotal: 'Jami',
   cartCheckout: 'Buyurtma berish',
   cartRemove: "O'chirish",
+  cartClear: 'Savatchani tozalash',
 
   wishlistTitle: 'Sevimlilar',
   wishlistEmpty: "Sevimlilar ro'yxati bo'sh",
