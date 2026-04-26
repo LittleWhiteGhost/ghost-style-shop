@@ -2929,3 +2929,47 @@ body.dark-mode .toast {
   text-transform: uppercase;
   clip-path: polygon(0 0, 100% 0, 96% 100%, 0 100%);
 }
+
+/* ===========================
+   NOIR & FLAME — sharp icons
+   Override lucide-react default rounded strokes for an angular,
+   editorial look matching the rest of the design system.
+   =========================== */
+.lucide,
+.lucide *,
+header svg,
+.product-card svg,
+.add-to-cart-btn svg,
+.qty-btn svg,
+.wishlist-btn svg,
+.back-button svg,
+.toast svg,
+.btn svg {
+  stroke-linecap: square !important;
+  stroke-linejoin: miter !important;
+  stroke-miterlimit: 6;
+  shape-rendering: geometricPrecision;
+}
+
+/* slightly thicker strokes for higher visual weight */
+.lucide {
+  stroke-width: 2.4;
+}
+
+/* Header / nav icons should feel chunkier and angular */
+header .lucide,
+.bottom-nav .lucide,
+nav .lucide {
+  stroke-width: 2.6;
+}
+
+/* Cart qty +/- and wishlist want maximum sharpness */
+.qty-btn .lucide,
+.wishlist-btn .lucide {
+  stroke-width: 2.8;
+}
+
+/* Toast indicator */
+.toast .lucide {
+  stroke-width: 2.6;
+}

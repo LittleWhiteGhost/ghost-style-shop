@@ -53,7 +53,7 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
         {toasts.map(t => (
           <div key={t.id} className={`toast ${exiting.has(t.id) ? 'toast-exit' : ''}`}>
             <span className="toast-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="square" strokeLinejoin="miter">
                 <polyline points="20 6 9 17 4 12" />
               </svg>
             </span>
