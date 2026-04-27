@@ -3,7 +3,7 @@ import { useWishlist } from '../context/WishlistContext';
 import { useToast } from '../context/ToastContext';
 import { useLang } from '../i18n/LanguageContext';
 import { useNavigate } from 'react-router-dom';
-import { Heart, Plus, Minus, ShoppingBag } from 'lucide-react';
+import { Heart, Plus, Minus } from 'lucide-react';
 import ProductIllustration from './ProductIllustration';
 
 interface ProductCardProps {
@@ -67,15 +67,15 @@ export default function ProductCard({ id, name, price, image, isNew, category, d
   };
 
   return (
-    <div className="product-card" onClick={handleClick}>
-      {isNew && <div className="product-badge">{t('newBadge')}</div>}
+    <article className="product-card" onClick={handleClick}>
       <div className="product-image">
+        {isNew && <span className="product-badge">/ {t('newBadge')}</span>}
         <button
           className={`wishlist-btn ${isInWishlist(id) ? 'active' : ''}`}
           onClick={handleToggleWishlist}
           aria-label={t('toggleFavorite')}
         >
-          <Heart size={18} strokeWidth={2.8} fill={isInWishlist(id) ? 'currentColor' : 'none'} />
+          <Heart size={16} strokeWidth={2.6} fill={isInWishlist(id) ? 'currentColor' : 'none'} />
         </button>
         {useIllustration ? (
           <ProductIllustration category={category} title={name} />
@@ -84,27 +84,26 @@ export default function ProductCard({ id, name, price, image, isNew, category, d
         )}
       </div>
       <div className="product-info">
-        <h3 className="product-name">{name}</h3>
-        <p className="product-price">{price.toLocaleString('ru-RU')} ₽</p>
+        <div className="product-info__row">
+          <h3 className="product-name">{name}</h3>
+          <p className="product-price">{price.toLocaleString('ru-RU')} ₽</p>
+        </div>
         {quantity === 0 ? (
-          <button className="add-to-cart-btn" onClick={handleAddToCart}>
-            <ShoppingBag size={16} strokeWidth={2.8} />
-            {t('addToCart')}
+          <button className="product-buy" onClick={handleAddToCart}>
+            {t('buy')}&nbsp;&nbsp;{price.toLocaleString('ru-RU')} ₽
           </button>
         ) : (
           <div className="qty-control" onClick={(e) => e.stopPropagation()}>
             <button className="qty-btn" onClick={handleDec} aria-label={t('decrease')}>
-              <Minus size={16} strokeWidth={3} />
+              <Minus size={14} strokeWidth={3} />
             </button>
-            <span className="qty-value">
-              {t('inCart', { n: quantity })}
-            </span>
+            <span className="qty-value">{t('inCart', { n: quantity })}</span>
             <button className="qty-btn" onClick={handleInc} aria-label={t('increase')}>
-              <Plus size={16} strokeWidth={3} />
+              <Plus size={14} strokeWidth={3} />
             </button>
           </div>
         )}
       </div>
-    </div>
+    </article>
   );
 }

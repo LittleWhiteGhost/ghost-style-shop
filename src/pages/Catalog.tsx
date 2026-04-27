@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useMemo, useState, useEffect } from 'react';
+import { X } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
 import Hero from '../components/Hero';
 import { ProductService, Product } from '../services/products';
@@ -13,8 +14,18 @@ const mockProducts: Product[] = [
   { id: '6', name: 'Свитер Warm', price: 4290, category: 'sweater', image: '', description: 'Теплый свитер' },
 ];
 
+const CHIPS: Array<{ key: string; tKey: 'catTshirt' | 'catHoodie' | 'catJeans' | 'catCap' | 'catShirt' | 'catSweater' }> = [
+  { key: 'tshirt', tKey: 'catTshirt' },
+  { key: 'hoodie', tKey: 'catHoodie' },
+  { key: 'jeans', tKey: 'catJeans' },
+  { key: 'cap', tKey: 'catCap' },
+  { key: 'shirt', tKey: 'catShirt' },
+  { key: 'sweater', tKey: 'catSweater' },
+];
+
 export default function Catalog() {
   const [products, setProducts] = useState<Product[]>(mockProducts);
+  const [active, setActive] = useState<string[]>([]);
   const { t } = useLang();
 
   useEffect(() => {
@@ -31,6 +42,15 @@ export default function Catalog() {
 
     loadProducts();
   }, []);
+
+  const visible = useMemo(() => {
+    if (active.length === 0) return products;
+    return products.filter(p => active.includes((p.category || '').toLowerCase()));
+  }, [products, active]);
+
+  const toggle = (key: string) => {
+    setActive(prev => (prev.includes(key) ? prev.filter(k => k !== key) : [...prev, key]));
+  };
 
   return (
     <div className="page">
@@ -50,8 +70,31 @@ export default function Catalog() {
         <div className="nf-section-head__meta">{t('catalogMeta')}</div>
       </div>
 
+      <div className="catalog-chips" role="toolbar" aria-label={t('catalogTitle')}>
+        {CHIPS.map(c => {
+          const on = active.includes(c.key);
+          return (
+            <button
+              key={c.key}
+              type="button"
+              className={`chip ${on ? 'chip--on' : ''}`}
+              onClick={() => toggle(c.key)}
+              aria-pressed={on}
+            >
+              {on && <X size={14} strokeWidth={2.8} className="chip__x" />}
+              <span>{t(c.tKey)}</span>
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="catalog-meta-row">
+        <span className="catalog-count">{String(visible.length).padStart(2, '0')} / {String(products.length).padStart(2, '0')}</span>
+        <span className="catalog-divider" aria-hidden="true" />
+      </div>
+
       <div className="product-grid">
-        {products.map(product => (
+        {visible.map(product => (
           <ProductCard
             key={product.id}
             id={product.id!}

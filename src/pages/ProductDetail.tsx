@@ -3,9 +3,10 @@ import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
 import { useToast } from '../context/ToastContext';
 import { useState } from 'react';
+import { ArrowLeft, ArrowRight, Heart } from 'lucide-react';
 import ProductIllustration from '../components/ProductIllustration';
 import BackButton from '../components/BackButton';
-import { Heart, ShoppingBag } from 'lucide-react';
+import { useLang } from '../i18n/LanguageContext';
 
 const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
 
@@ -15,7 +16,9 @@ export default function ProductDetail() {
   const { addToCart } = useCart();
   const { isInWishlist, toggleWishlist } = useWishlist();
   const { showToast } = useToast();
+  const { t } = useLang();
   const [selectedSize, setSelectedSize] = useState('M');
+  const [slide, setSlide] = useState(1);
 
   const product = location.state;
 
@@ -23,6 +26,8 @@ export default function ProductDetail() {
     navigate('/');
     return null;
   }
+
+  const total = 4;
 
   const handleAddToCart = () => {
     addToCart({
@@ -32,8 +37,8 @@ export default function ProductDetail() {
       image: product.image
     });
     showToast({
-      title: `${product.name} (${selectedSize}) добавлен в корзину`,
-      linkText: 'Перейти в корзину',
+      title: t('toastAdded', { name: `${product.name} (${selectedSize})` }),
+      linkText: t('toastGoToCart'),
       linkTo: '/cart'
     });
   };
@@ -42,33 +47,62 @@ export default function ProductDetail() {
 
   return (
     <div className="page product-detail">
-      <BackButton label="Назад" />
+      <BackButton />
 
-      <div className="product-detail-content">
-        <div className="product-detail-image">
-          {useIllustration ? (
-            <ProductIllustration category={product.category} title={product.name} />
-          ) : (
-            <img src={product.image} alt={product.name} />
-          )}
-          {product.isNew && <div className="product-badge">NEW</div>}
+      <div className="product-detail-grid">
+        <div className="pd-media">
+          <div className="pd-media__frame">
+            {useIllustration ? (
+              <ProductIllustration category={product.category} title={product.name} />
+            ) : (
+              <img src={product.image} alt={product.name} />
+            )}
+            {product.isNew && <span className="product-badge product-badge--detail">/ {t('newBadge')}</span>}
+          </div>
+
+          <div className="pd-thumbnav" aria-label={t('productThumbHint')}>
+            <button
+              type="button"
+              className="pd-thumbnav__btn"
+              onClick={() => setSlide(s => Math.max(1, s - 1))}
+              aria-label="Prev"
+            >
+              <ArrowLeft size={16} strokeWidth={2.6} />
+            </button>
+            <span className="pd-thumbnav__count">
+              {String(slide).padStart(2, '0')}
+              <span className="pd-thumbnav__dash" />
+              {String(total).padStart(2, '0')}
+            </span>
+            <button
+              type="button"
+              className="pd-thumbnav__btn"
+              onClick={() => setSlide(s => Math.min(total, s + 1))}
+              aria-label="Next"
+            >
+              <ArrowRight size={16} strokeWidth={2.6} />
+            </button>
+          </div>
         </div>
 
-        <div className="product-detail-info">
-          <span className="nf-ribbon">Drop / 01</span>
-          <h1>{product.name}</h1>
-          <p className="product-price">{product.price.toLocaleString('ru-RU')} ₽</p>
+        <div className="pd-info">
+          <span className="pd-eyebrow">/ {product.category || 'Capsule 01'}</span>
+          <h1 className="pd-title">{product.name}</h1>
+          <p className="pd-price">{product.price.toLocaleString('ru-RU')} ₽</p>
+          <div className="pd-rule" />
+
           {product.description && (
-            <p className="product-description">{product.description}</p>
+            <p className="pd-description">{product.description}</p>
           )}
 
-          <div className="size-selector">
-            <h3>Размер</h3>
-            <div className="size-options">
+          <div className="pd-section">
+            <span className="pd-section__label">{t('productSize')}</span>
+            <div className="pd-sizes">
               {sizes.map(size => (
                 <button
                   key={size}
-                  className={`size-btn ${selectedSize === size ? 'active' : ''}`}
+                  type="button"
+                  className={`pd-size ${selectedSize === size ? 'pd-size--on' : ''}`}
                   onClick={() => setSelectedSize(size)}
                 >
                   {size}
@@ -77,17 +111,16 @@ export default function ProductDetail() {
             </div>
           </div>
 
-          <div className="product-actions">
-            <button className="btn-add-cart" onClick={handleAddToCart}>
-              <ShoppingBag size={18} strokeWidth={2.8} />
-              Добавить в корзину
+          <div className="pd-actions">
+            <button className="pd-add" onClick={handleAddToCart}>
+              {t('productAdd')}
             </button>
             <button
-              className={`btn-wishlist ${isInWishlist(product.id) ? 'active' : ''}`}
+              className={`pd-fav ${isInWishlist(product.id) ? 'active' : ''}`}
               onClick={() => toggleWishlist(product)}
-              aria-label="В избранное"
+              aria-label={t('toggleFavorite')}
             >
-              <Heart size={20} strokeWidth={2.8} fill={isInWishlist(product.id) ? 'currentColor' : 'none'} />
+              <Heart size={20} strokeWidth={2.6} fill={isInWishlist(product.id) ? 'currentColor' : 'none'} />
             </button>
           </div>
         </div>
