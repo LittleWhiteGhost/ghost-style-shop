@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLang } from '../i18n/LanguageContext';
 import { Lang } from '../i18n/dictionaries';
+import PageHead from '../components/PageHead';
 
 export default function Settings() {
   const { lang, setLang, t } = useLang();
@@ -20,10 +21,7 @@ export default function Settings() {
 
   return (
     <div className="page">
-      <div className="section-header">
-        <h2>{t('settingsTitle')}</h2>
-        <p className="section-subtitle">{t('settingsSubtitle')}</p>
-      </div>
+      <PageHead num="№06" title={t('settingsTitle')} meta={t('settingsMeta')} />
 
       <div className="settings-section">
         <h3 className="section-title">{t('settingsAppearance')}</h3>

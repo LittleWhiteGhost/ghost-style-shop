@@ -5,6 +5,7 @@ import { useWishlist } from '../context/WishlistContext';
 import { AuthService } from '../services/auth';
 import { OrderService } from '../services/orders';
 import { useLang } from '../i18n/LanguageContext';
+import PageHead from '../components/PageHead';
 
 export default function Account() {
   const { user } = useAuth();
@@ -50,10 +51,7 @@ export default function Account() {
 
   return (
     <div className="page">
-      <div className="section-header">
-        <h2>{t('accountTitle')}</h2>
-        <p className="section-subtitle">{t('accountSubtitle')}</p>
-      </div>
+      <PageHead num="№05" title={t('accountTitle')} meta={t('accountMeta')} />
 
       <div className="account-info">
         <div className="user-avatar">

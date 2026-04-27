@@ -1,6 +1,7 @@
 import { useCart } from '../context/CartContext';
 import { useNavigate } from 'react-router-dom';
 import BackButton from '../components/BackButton';
+import PageHead from '../components/PageHead';
 import ProductIllustration from '../components/ProductIllustration';
 import { useLang } from '../i18n/LanguageContext';
 import { Minus, Plus, Trash2, ShoppingCart } from 'lucide-react';
@@ -20,9 +21,7 @@ export default function Cart() {
     return (
       <div className="page cart-page">
         <BackButton to="/" label={t('cartGoToCatalog')} />
-        <div className="section-header">
-          <h2>{t('cartTitle')}</h2>
-        </div>
+        <PageHead num="№07" title={t('cartTitle')} meta={t('cartMeta')} />
         <div className="empty-cart">
           <ShoppingCart size={72} strokeWidth={1.5} />
           <h3>{t('cartEmpty')}</h3>
@@ -35,10 +34,11 @@ export default function Cart() {
   return (
     <div className="page cart-page">
       <BackButton to="/" label={t('cartGoToCatalog')} />
-      <div className="section-header">
-        <h2>{t('cartTitle')}</h2>
-        <p className="section-subtitle">{t('inCart', { n: items.reduce((s, i) => s + i.quantity, 0) })}</p>
-      </div>
+      <PageHead
+        num="№07"
+        title={t('cartTitle')}
+        meta={t('inCart', { n: items.reduce((s, i) => s + i.quantity, 0) })}
+      />
 
       <div className="cart-items">
         {items.map(item => (

@@ -1,6 +1,7 @@
 import { useWishlist } from '../context/WishlistContext';
 import ProductCard from '../components/ProductCard';
 import BackButton from '../components/BackButton';
+import PageHead from '../components/PageHead';
 import { useLang } from '../i18n/LanguageContext';
 import { Heart } from 'lucide-react';
 
@@ -12,9 +13,7 @@ export default function Wishlist() {
     return (
       <div className="page">
         <BackButton to="/" label={t('cartGoToCatalog')} />
-        <div className="section-header">
-          <h2>{t('wishlistTitle')}</h2>
-        </div>
+        <PageHead num="№08" title={t('wishlistTitle')} meta={t('wishlistMeta')} />
         <div className="empty-cart">
           <Heart size={72} strokeWidth={1.5} />
           <h3>{t('wishlistEmpty')}</h3>
@@ -27,10 +26,11 @@ export default function Wishlist() {
   return (
     <div className="page">
       <BackButton to="/" label={t('cartGoToCatalog')} />
-      <div className="section-header">
-        <h2>{t('wishlistTitle')}</h2>
-        <p className="section-subtitle">{t('accountFavoritesCount', { n: items.length })}</p>
-      </div>
+      <PageHead
+        num="№08"
+        title={t('wishlistTitle')}
+        meta={t('accountFavoritesCount', { n: items.length })}
+      />
       <div className="product-grid">
         {items.map(item => (
           <ProductCard

@@ -1,4 +1,5 @@
 import BackButton from '../components/BackButton';
+import PageHead from '../components/PageHead';
 import { useLang } from '../i18n/LanguageContext';
 
 export default function About() {
@@ -7,11 +8,7 @@ export default function About() {
   return (
     <div className="page about-page">
       <BackButton to="/" />
-      <header className="nf-section-head">
-        <span className="nf-section-head__num">№02</span>
-        <h2 className="nf-section-head__title">{t('aboutTitle')}</h2>
-        <span className="nf-section-head__meta">{t('aboutMeta')}</span>
-      </header>
+      <PageHead num="№03" title={t('aboutTitle')} meta={t('aboutMeta')} />
 
       <section className="about-lead">
         <p className="about-lead__text">{t('aboutLead')}</p>

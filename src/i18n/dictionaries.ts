@@ -35,6 +35,7 @@ const ru = {
 
   // Cart
   cartTitle: 'Корзина',
+  cartMeta: 'Bag / Drop 01',
   cartEmpty: 'Корзина пуста',
   cartEmptyHint: 'Добавьте товары из каталога, чтобы оформить заказ',
   cartGoToCatalog: 'К каталогу',
@@ -45,11 +46,13 @@ const ru = {
 
   // Wishlist
   wishlistTitle: 'Избранное',
+  wishlistMeta: 'Saved / Drop 01',
   wishlistEmpty: 'Список избранного пуст',
   wishlistEmptyHint: 'Сохраняйте понравившиеся товары, нажимая на сердечко',
 
   // Account
   accountTitle: 'Аккаунт',
+  accountMeta: 'Profile / Orders',
   accountSubtitle: 'Управление профилем',
   accountGuest: 'Гость',
   accountOrders: 'Мои заказы',
@@ -86,6 +89,7 @@ const ru = {
 
   // Settings
   settingsTitle: 'Настройки',
+  settingsMeta: 'Preferences / Region',
   settingsSubtitle: 'Параметры приложения',
   settingsAppearance: 'Внешний вид',
   settingsDark: 'Тёмная тема',
@@ -179,6 +183,7 @@ const en: typeof ru = {
   toastGoToCart: 'Go to cart',
 
   cartTitle: 'Cart',
+  cartMeta: 'Bag / Drop 01',
   cartEmpty: 'Cart is empty',
   cartEmptyHint: 'Add items from the catalog to place an order',
   cartGoToCatalog: 'To catalog',
@@ -188,10 +193,12 @@ const en: typeof ru = {
   cartClear: 'Clear cart',
 
   wishlistTitle: 'Favorites',
+  wishlistMeta: 'Saved / Drop 01',
   wishlistEmpty: 'Favorites list is empty',
   wishlistEmptyHint: 'Save items you like by tapping the heart',
 
   accountTitle: 'Account',
+  accountMeta: 'Profile / Orders',
   accountSubtitle: 'Manage your profile',
   accountGuest: 'Guest',
   accountOrders: 'My orders',
@@ -226,6 +233,7 @@ const en: typeof ru = {
   registerLoginCta: 'Sign in',
 
   settingsTitle: 'Settings',
+  settingsMeta: 'Preferences / Region',
   settingsSubtitle: 'App preferences',
   settingsAppearance: 'Appearance',
   settingsDark: 'Dark theme',
@@ -315,6 +323,7 @@ const uz: typeof ru = {
   toastGoToCart: 'Savatchaga',
 
   cartTitle: 'Savatcha',
+  cartMeta: 'Bag / Drop 01',
   cartEmpty: "Savatcha bo'sh",
   cartEmptyHint: "Buyurtma berish uchun katalogdan mahsulot qo'shing",
   cartGoToCatalog: 'Katalogga',
@@ -324,10 +333,12 @@ const uz: typeof ru = {
   cartClear: 'Savatchani tozalash',
 
   wishlistTitle: 'Sevimlilar',
+  wishlistMeta: 'Saved / Drop 01',
   wishlistEmpty: "Sevimlilar ro'yxati bo'sh",
   wishlistEmptyHint: "Yoqqan buyumlarni yurakni bosib saqlab qo'ying",
 
   accountTitle: 'Akkaunt',
+  accountMeta: 'Profil / Buyurtmalar',
   accountSubtitle: 'Profilni boshqarish',
   accountGuest: 'Mehmon',
   accountOrders: 'Buyurtmalarim',
@@ -362,6 +373,7 @@ const uz: typeof ru = {
   registerLoginCta: 'Kirish',
 
   settingsTitle: 'Sozlamalar',
+  settingsMeta: 'Sozlamalar / Mintaqa',
   settingsSubtitle: 'Ilova parametrlari',
   settingsAppearance: "Ko'rinish",
   settingsDark: "Qorong'i mavzu",

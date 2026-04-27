@@ -48,10 +48,17 @@ export default function Login() {
           <BackButton to="/" />
         </div>
         <Link to="/" className="auth-logo">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M9 10h.01M15 10h.01M12 2a8 8 0 0 1 8 8v12l-3-3-2.5 2.5L12 19l-2.5 2.5L7 19l-3 3V10a8 8 0 0 1 8-8z"/>
-          </svg>
-          <span>NOIR &amp; FLAME</span>
+          <span className="logo-mark logo-mark--auth" aria-hidden="true">
+            <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" shapeRendering="crispEdges">
+              <rect x="0" y="0" width="36" height="36" fill="#0a0a0a" />
+              <polygon points="8,30 18,4 22,12 16,18 26,18 30,30" fill="#ff5a1f" />
+              <polygon points="4,22 32,8 32,12 4,26" fill="#f5e6d3" opacity="0.95" />
+              <rect x="24" y="24" width="2" height="2" fill="#f5e6d3" />
+              <rect x="28" y="22" width="2" height="2" fill="#f5e6d3" />
+              <rect x="22" y="28" width="2" height="2" fill="#f5e6d3" />
+            </svg>
+          </span>
+          <span>NOIR&nbsp;&amp;&nbsp;FLAME</span>
         </Link>
 
         <h1>{t('loginTitle')}</h1>

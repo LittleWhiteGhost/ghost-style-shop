@@ -1,5 +1,6 @@
 import { Mail, Phone, Send, MapPin, Clock } from 'lucide-react';
 import BackButton from '../components/BackButton';
+import PageHead from '../components/PageHead';
 import { useLang } from '../i18n/LanguageContext';
 
 export default function Contacts() {
@@ -8,11 +9,7 @@ export default function Contacts() {
   return (
     <div className="page contacts-page">
       <BackButton to="/" />
-      <header className="nf-section-head">
-        <span className="nf-section-head__num">№03</span>
-        <h2 className="nf-section-head__title">{t('contactsTitle')}</h2>
-        <span className="nf-section-head__meta">{t('contactsMeta')}</span>
-      </header>
+      <PageHead num="№04" title={t('contactsTitle')} meta={t('contactsMeta')} />
 
       <p className="contacts-lead">{t('contactsLead')}</p>
 
