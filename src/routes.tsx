@@ -13,6 +13,8 @@ import OrderSuccess from './pages/OrderSuccess';
 import Wishlist from './pages/Wishlist';
 import ProductDetail from './pages/ProductDetail';
 import Admin from './pages/Admin';
+import About from './pages/About';
+import Contacts from './pages/Contacts';
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
   const { user } = useAuth();
@@ -43,6 +45,8 @@ export default function AppRoutes() {
           </PrivateRoute>
         } />
         <Route path="order-success" element={<OrderSuccess />} />
+        <Route path="about" element={<About />} />
+        <Route path="contacts" element={<Contacts />} />
         <Route path="admin" element={
           <PrivateRoute>
             <Admin />
