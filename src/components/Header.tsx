@@ -66,12 +66,12 @@ export default function Header() {
   }, [open]);
 
   const items_: Array<{ to: string; label: string; icon: JSX.Element }> = [
-    { to: '/', label: t('navCatalog'), icon: <Home size={20} strokeWidth={2.8} absoluteStrokeWidth /> },
-    { to: '/new', label: t('navNew'), icon: <Sparkles size={20} strokeWidth={2.8} absoluteStrokeWidth /> },
-    { to: '/about', label: t('navAbout'), icon: <Info size={20} strokeWidth={2.8} absoluteStrokeWidth /> },
-    { to: '/contacts', label: t('navContacts'), icon: <AtSign size={20} strokeWidth={2.8} absoluteStrokeWidth /> },
-    { to: '/account', label: t('navAccount'), icon: <User size={20} strokeWidth={2.8} absoluteStrokeWidth /> },
-    { to: '/settings', label: t('navSettings'), icon: <SettingsIcon size={20} strokeWidth={2.8} absoluteStrokeWidth /> },
+    { to: '/', label: t('navCatalog'), icon: <Home size={26} strokeWidth={2.8} absoluteStrokeWidth /> },
+    { to: '/new', label: t('navNew'), icon: <Sparkles size={26} strokeWidth={2.8} absoluteStrokeWidth /> },
+    { to: '/about', label: t('navAbout'), icon: <Info size={26} strokeWidth={2.8} absoluteStrokeWidth /> },
+    { to: '/contacts', label: t('navContacts'), icon: <AtSign size={26} strokeWidth={2.8} absoluteStrokeWidth /> },
+    { to: '/account', label: t('navAccount'), icon: <User size={26} strokeWidth={2.8} absoluteStrokeWidth /> },
+    { to: '/settings', label: t('navSettings'), icon: <SettingsIcon size={26} strokeWidth={2.8} absoluteStrokeWidth /> },
   ];
 
   return (
@@ -153,7 +153,7 @@ export default function Header() {
             >
               <span className="drawer-link__num">★</span>
               <span className="drawer-link__icon" aria-hidden="true">
-                <ShieldCheck size={20} strokeWidth={2.8} absoluteStrokeWidth />
+                <ShieldCheck size={26} strokeWidth={2.8} absoluteStrokeWidth />
               </span>
               <span className="drawer-link__label">{t('navAdmin')}</span>
             </Link>

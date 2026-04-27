@@ -3362,7 +3362,8 @@ body.dark-mode .burger-btn:hover {
 .drawer-link {
   position: relative;
   display: grid;
-  grid-template-columns: 56px 36px 1fr;
+  grid-template-columns: 52px 32px 1fr;
+  column-gap: 14px;
   align-items: center;
   padding: 18px 22px;
   text-decoration: none;
@@ -3370,7 +3371,8 @@ body.dark-mode .burger-btn:hover {
   border-top: 1px solid rgba(245, 230, 211, 0.08);
   transition: background 0.15s ease, color 0.15s ease, padding-left 0.15s ease;
   font-family: 'Bebas Neue', 'Oswald', sans-serif;
-  font-size: 22px;
+  font-size: 26px;
+  line-height: 1;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
@@ -3390,9 +3392,17 @@ body.dark-mode .burger-btn:hover {
 .drawer-link__icon {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  color: rgba(245, 230, 211, 0.55);
+  justify-content: flex-start;
+  width: 32px;
+  height: 26px;
+  color: rgba(245, 230, 211, 0.7);
   transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.drawer-link__icon svg {
+  width: 26px;
+  height: 26px;
+  display: block;
 }
 
 .drawer-link__label {
