@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
@@ -18,6 +18,13 @@ export default function Checkout() {
     city: '',
     comment: ''
   });
+
+  // BUG FIX: редирект при пустой корзине — через useEffect, не во время рендера
+  useEffect(() => {
+    if (items.length === 0) {
+      navigate('/cart');
+    }
+  }, [items.length, navigate]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -46,10 +53,8 @@ export default function Checkout() {
         shippingAddress: formData
       };
 
-      // Сохраняем заказ в Firestore
       const orderId = await OrderService.createOrder(orderData);
 
-      // Отправляем уведомление в Telegram
       await TelegramService.sendOrderNotification({
         items: items.map(item => ({
           name: item.name,
@@ -70,10 +75,7 @@ export default function Checkout() {
     }
   };
 
-  if (items.length === 0) {
-    navigate('/cart');
-    return null;
-  }
+  if (items.length === 0) return null;
 
   return (
     <div className="page">

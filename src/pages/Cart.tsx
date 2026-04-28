@@ -43,12 +43,13 @@ export default function Cart() {
             </div>
             <div className="cart-item-actions">
               <div className="quantity-control">
+                {/* BUG FIX: при quantity===1 кнопка "−" удаляет товар — заменяем на иконку корзины */}
                 <button
-                  onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                  disabled={item.quantity <= 1}
-                  aria-label="Уменьшить"
+                  onClick={() => item.quantity === 1 ? removeFromCart(item.id) : updateQuantity(item.id, item.quantity - 1)}
+                  aria-label={item.quantity === 1 ? 'Удалить' : 'Уменьшить'}
+                  style={{ color: item.quantity === 1 ? 'var(--color-danger, #e24b4a)' : undefined }}
                 >
-                  <Minus size={16} strokeWidth={2.4} />
+                  {item.quantity === 1 ? <Trash2 size={16} strokeWidth={2} /> : <Minus size={16} strokeWidth={2.4} />}
                 </button>
                 <span>{item.quantity}</span>
                 <button

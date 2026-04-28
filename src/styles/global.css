@@ -33,8 +33,8 @@
   --bg-elevated: #efefef;
 
   /* Карточки и поверхности */
-  --card-bg: #ffffff;
-  --card-bg-hover: #fffaf5;
+  --card-bg: transparent;
+  --card-bg-hover: transparent;
 
   /* Границы */
   --border: #e8e8e8;
@@ -91,8 +91,8 @@ body.dark-mode {
   --bg-secondary: #141414;
   --bg-elevated: #1a1a1a;
 
-  --card-bg: #141414;
-  --card-bg-hover: #1c1410;
+  --card-bg: transparent;
+  --card-bg-hover: transparent;
 
   --border: #262626;
   --border-light: #1f1f1f;
@@ -111,6 +111,45 @@ body.dark-mode {
   --active: #241b14;
   --error-bg: #1c0a0a;
   --success-bg: #0a1c0f;
+}
+
+/* ===== УБИРАЕМ СИНЮЮ ОБВОДКУ — используем оранжевую или none ===== */
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ===== ВЫДЕЛЕНИЕ ТЕКСТА — оранжевый цвет ===== */
+::selection {
+  background-color: rgba(255, 106, 0, 0.25);
+  color: var(--text);
+}
+
+::-moz-selection {
+  background-color: rgba(255, 106, 0, 0.25);
+  color: var(--text);
+}
+
+body.dark-mode ::selection {
+  background-color: rgba(255, 122, 31, 0.35);
+  color: var(--text);
+}
+
+body.dark-mode ::-moz-selection {
+  background-color: rgba(255, 122, 31, 0.35);
+  color: var(--text);
 }
 
 /* ===== БАЗОВЫЕ СТИЛИ ===== */
@@ -2272,3 +2311,109 @@ body.dark-mode .search-input:focus {
   background: var(--accent);
   color: var(--accent-on);
 }
+
+/* ========================================
+   DESKTOP LAYOUT FIX (min-width: 768px)
+   На мобиле: header сверху + bottom-nav снизу (фиксированная)
+   На десктопе: всё в одной топ-панели, bottom-nav убирается
+   ======================================== */
+@media (min-width: 768px) {
+  /* Хедер занимает полную ширину, flex в строку */
+  .header {
+    position: sticky;
+    top: 0;
+  }
+
+  .header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 14px 32px;
+  }
+
+  /* bottom-nav переезжает в одну строку с header-content */
+  .bottom-nav {
+    /* Убираем мобильный вид (отдельная полоса снизу хедера) */
+    border-top: none;
+    border-left: 1px solid var(--border-light);
+    box-shadow: none;
+    padding: 0 8px;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    /* Вставляем в хедер как inline-nav */
+    display: flex;
+    gap: 4px;
+  }
+
+  body.dark-mode .bottom-nav {
+    background: transparent;
+    border-left-color: var(--border);
+  }
+
+  /* header-content и bottom-nav в одну строку */
+  .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .header-content {
+    flex-shrink: 0;
+    border-bottom: none;
+  }
+
+  /* nav-btn на десктопе — горизонтальный, без иконки */
+  .nav-btn {
+    flex-direction: row;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+
+  .nav-btn span {
+    font-size: 14px;
+  }
+
+  .nav-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Активный индикатор — переделываем под горизонтальный вид */
+  .nav-btn::before {
+    top: auto;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 80%;
+    height: 2px;
+  }
+
+  .nav-btn.active::before {
+    transform: translateX(-50%) scaleX(1);
+  }
+
+  /* Контент — нормальный отступ без учёта bottom-nav */
+  .content {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 32px;
+    /* На десктопе нет фиксированной bottom-nav, убираем большой нижний паддинг */
+    padding-bottom: 64px;
+  }
+
+  /* Тост — не перекрывается навигацией */
+  .toast-container {
+    bottom: 32px;
+  }
+
+  /* Нижняя панель с иконками (wishlist/cart) на мобиле) — скрыть если она фиксированная */
+  .fixed-bottom-bar {
+    display: none;
+  }
+}
+

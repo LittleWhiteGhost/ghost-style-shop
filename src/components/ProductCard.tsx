@@ -13,17 +13,22 @@ interface ProductCardProps {
   description?: string;
 }
 
+// BUG FIX: картокчка и детальная страница использовали разные форматы id в корзине.
+// Унифицируем: из карточки добавляем с размером M по умолчанию, как и в ProductDetail.
+const DEFAULT_SIZE = 'M';
+
 export default function ProductCard({ id, name, price, image, isNew, description }: ProductCardProps) {
   const { addToCart, updateQuantity, getQuantity } = useCart();
   const { isInWishlist, toggleWishlist } = useWishlist();
   const { showToast } = useToast();
   const navigate = useNavigate();
 
-  const quantity = getQuantity(id);
+  const cartId = `${id}-${DEFAULT_SIZE}`;
+  const quantity = getQuantity(cartId);
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation();
-    addToCart({ id, name, price, image });
+    addToCart({ id: cartId, name: `${name} (${DEFAULT_SIZE})`, price, image });
     showToast({
       title: `${name} добавлен в корзину`,
       linkText: 'Перейти в корзину',
@@ -33,12 +38,12 @@ export default function ProductCard({ id, name, price, image, isNew, description
 
   const handleInc = (e: React.MouseEvent) => {
     e.stopPropagation();
-    updateQuantity(id, quantity + 1);
+    updateQuantity(cartId, quantity + 1);
   };
 
   const handleDec = (e: React.MouseEvent) => {
     e.stopPropagation();
-    updateQuantity(id, quantity - 1);
+    updateQuantity(cartId, quantity - 1);
   };
 
   const handleToggleWishlist = (e: React.MouseEvent) => {

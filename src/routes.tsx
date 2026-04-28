@@ -14,8 +14,11 @@ import Wishlist from './pages/Wishlist';
 import ProductDetail from './pages/ProductDetail';
 import Admin from './pages/Admin';
 
+// BUG FIX: ждём loading=false прежде чем решать — редиректить или нет
 function PrivateRoute({ children }: { children: React.ReactNode }) {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
+
+  if (loading) return null; // не рендерим ничего пока Firebase не ответил
 
   return user ? <>{children}</> : <Navigate to="/login" />;
 }
